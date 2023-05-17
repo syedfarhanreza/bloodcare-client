@@ -1,15 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
     const menuItems = <React.Fragment>
-        <li><a>Home</a></li>
-        <li><a>About Us</a></li>
-        <li><a>Blogs</a></li>
-        <li><a>Donor List</a></li>
-        <li><a>Camp Details</a></li>
-        <li><a>Hospital List</a></li>
-        <li><a>Blood Requests</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/aboutUs">About Us</Link></li>
+        <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/donorList">Donor List</Link></li>
+        <li><Link to="/campaign">Campaign</Link></li>
+        <li><Link to="/hospitalList">Hospital List</Link></li>
+        <li><Link to="/bloodRequests">Blood Requests</Link></li>
+        <li><Link to="/search">Search</Link></li>
     </React.Fragment>
     return (
         <div className="navbar bg-red-600">
@@ -22,7 +24,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-white normal-case text-xl">BloodCare</a>
+                <Link to="/" className="btn btn-ghost text-white normal-case text-xl">BloodCare</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal text-white px-1">
@@ -30,7 +32,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <Link to="/login" className="btn">Login</Link>
             </div>
         </div>
     );
