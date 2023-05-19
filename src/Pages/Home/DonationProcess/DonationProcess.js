@@ -37,7 +37,7 @@ const DonationProcess = () => {
     ]
 
     return (
-        <div className='pb-10'>
+        <div className='pb-20'>
             <div>
                 <h2 className='text-3xl font-bold text-center'>DONATION PROCESS</h2>
                 <span >
