@@ -4,7 +4,7 @@ const DonationCampaignInfo = ({campaign}) => {
 
     const {name,description, img, location, time} = campaign;
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl">
+        <div className="card card-compact bg-base-100 shadow-xl">
             <figure><img src={img} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

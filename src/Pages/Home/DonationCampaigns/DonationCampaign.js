@@ -19,7 +19,7 @@ const DonationCampaign = () => {
             id: 2,
             name: 'You Are Somebody’s Type',
             description: 'Every year, on 14 June, countries around the world celebrate World Blood Donor Day. The event serves to thank voluntary.',
-            img: campaign2,
+            img: campaign3,
             location: 'Koloni, Bogra',
             time: '10AM-3PM'
         },
@@ -33,7 +33,7 @@ const DonationCampaign = () => {
         },
     ]
     return (
-        <div>
+        <div className='pb-20'>
             <div>
                 <h1 className='text-5xl text-center font-bold uppercase'>Donation Campaigns</h1>
                 <span>
@@ -41,13 +41,16 @@ const DonationCampaign = () => {
                 </span>
                 <p className='text-center text-xl pb-5'>Campaigns to encourage new donors to join and existing to continue to give blood.</p>
             </div>
-            <div  className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-10'>
+            <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-10 mb-10'>
                 {
                     campaignData.map(campaign => <DonationCampaignInfo
                         key={campaign.id}
                         campaign={campaign}
                     ></DonationCampaignInfo>)
                 }
+            </div>
+            <div className='mx-auto text-center'>
+                <button className="btn btn-outline btn-accent shadow-xl">Load All Campaign</button>
             </div>
         </div>
     );
