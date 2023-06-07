@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/Logo/logo.jpg'
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-red-900 text-base-content">
+        <footer className="footer p-10 bg-red-600 text-base-content">
   <div>
     <img  src={logo} alt="" />
     <p className='text-white'>BloodCare<br/>A web-based solution for effective Blood Management and Donation Campaigns</p>
