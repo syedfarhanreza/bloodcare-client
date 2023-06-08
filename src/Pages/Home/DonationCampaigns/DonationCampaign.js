@@ -20,7 +20,7 @@ const DonationCampaign = () => {
             name: 'You Are Somebody’s Type',
             description: 'Every year, on 14 June, countries around the world celebrate World Blood Donor Day. The event serves to thank voluntary.',
             img: campaign3,
-            location: 'Koloni, Bogra',
+            location: 'Coloni, Bogra',
             time: '10AM-3PM'
         },
         {

@@ -10,8 +10,9 @@ const Login = () => {
     }
 
     return (
-        <div className='h-[720px] flex justify-center items-center'>
-            <div className='w-96 p-7'>
+        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/wSdvYX4/backg.jpg")` , backgroundRepeat: 'no-repeat',} }>
+        <div className='h-[800px] flex justify-center items-center font-bold'>
+            <div className='w-auto p-7 my-10 shadow-2xl bg-purple-200'>
                 <h2 className='text-xl text-center font-bold'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full max-w-xs">
@@ -49,6 +50,7 @@ const Login = () => {
                     <h1>LinkedIn</h1>
                 </div>
             </div>
+        </div>
         </div>
     );
 };
