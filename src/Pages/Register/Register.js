@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
-    const handleRegister = data => {
+    const {createUser} = useContext(AuthContext);
+    const handleRegister = (data) => {
         console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.log(error));
     }
 
     return (
-        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/wSdvYX4/backg.jpg")` , backgroundRepeat: 'no-repeat',} }>
-            <div className='flex justify-center items-center font-bold'>
-            <div className='w-auto p-7 my-10 shadow-2xl bg-purple-200' >
+        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/wQfbkcf/blood.jpg")` , backgroundRepeat: 'no-repeat'} }>
+            <div className='flex justify-center items-center font-extrabold'>
+            <div className='w-auto p-7 my-10 shadow-2xl' >
                 <h2 className='text-xl text-center font-bold'>Registration Form</h2>
                 <form onSubmit={handleSubmit(handleRegister)}>
                     <div className="form-control w-full">
@@ -86,7 +93,7 @@ const Register = () => {
                                 <option className='font-bold' value="a+">A+</option>
                                 <option className='font-bold' value="a-">A-</option>
                                 <option className='font-bold' value="b+">B+</option>
-                                <option className='font-bold' value="b+">B+</option>
+                                <option className='font-bold' value="b-">B-</option>
                                 <option className='font-bold' value="ab+">AB+</option>
                                 <option className='font-bold' value="ab-">AB-</option>
                                 <option className='font-bold' value="o+">O+</option>
