@@ -31,9 +31,9 @@ const Register = () => {
     }
 
     return (
-        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/wQfbkcf/blood.jpg")`, backgroundRepeat: 'no-repeat'}}>
+        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat'}}>
             <div className='flex justify-center items-center font-extrabold'>
-                <div className='w-auto p-7 my-10 shadow-2xl' >
+                <div className='w-auto bg-slate-300 p-7 my-10 shadow-2xl' >
                     <h2 className='text-xl text-center font-bold'>Registration Form</h2>
                     <form onSubmit={handleSubmit(handleRegister)}>
                         <div className="form-control w-full">
