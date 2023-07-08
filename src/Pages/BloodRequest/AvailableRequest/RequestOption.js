@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RequestOption = ({ requestOption }) => {
+const RequestOption = ({ requestOption, setBloodRequest }) => {
     const { name, img, slots } = requestOption;
     return (
         <div className="card card-compact  shadow-xl hover:shadow-2xl">
@@ -12,7 +12,12 @@ const RequestOption = ({ requestOption }) => {
                 <p>{slots.length > 0 ? slots[0] : 'Try Another Day'}</p>
                 <p>{slots.length} {slots.length > 1 ?  'spaces' : 'space'} available</p>
                 <div className="card-actions justify-end">
-                    <button className=" bg-red-600 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-full">Request For Blood</button>
+                    <label 
+                    disabled= {slots.length === 0}
+                    htmlFor="request-modal" 
+                    className=" bg-red-600 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-full"
+                    onClick={() => setBloodRequest(requestOption)}
+                    >Request For Blood</label>
                 </div>
             </div>
         </div>
