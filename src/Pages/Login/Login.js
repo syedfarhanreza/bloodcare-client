@@ -28,9 +28,9 @@ const Login = () => {
     }
 
     return (
-        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/wQfbkcf/blood.jpg")`, backgroundRepeat: 'no-repeat', }}>
-            <div className='h-[800px] flex justify-center items-center font-bold'>
-                <div className='w-[400px] p-7 my-10 shadow-2xl'>
+        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat', }}>
+            <div className='h-[800px] flex  justify-center items-center font-bold'>
+                <div className='w-[400px]  bg-slate-300 p-7 my-10 shadow-2xl'>
                     <h2 className='text-xl text-center font-bold'>Login</h2>
                     <form onSubmit={handleSubmit(handleLogin)}>
                         <div className="form-control w-full max-w-xs">

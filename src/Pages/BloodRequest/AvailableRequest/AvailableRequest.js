@@ -1,18 +1,21 @@
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import bloodTypes from '../../../assets/BloodRequestBanner/types of blood.jpg'
 import RequestOption from './RequestOption';
 import RequestModal from '../RequestModal/RequestModal';
+import { useQuery } from 'react-query';
 
 const AvailableRequest = ({ selectedDate }) => {
-    const [bloodGroups, setBloodGroups] = useState([]);
     const [bloodRequest, setBloodRequest] = useState(null);
 
-    useEffect(() => {
-        fetch('bloodGroups.json')
-            .then(res => res.json())
-            .then(data => setBloodGroups(data))
-    }, [])
+    const { data: bloodGroups = [] } = useQuery({
+        queryKey: ['bloodGroups'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/bloodGroups')
+            const data = await res.json();
+            return data
+        }
+    })
 
     return (
         <section className='mt-16 bg-base-100 mx-20 my-20'>
@@ -34,6 +37,7 @@ const AvailableRequest = ({ selectedDate }) => {
                 <RequestModal
                     selectedDate={selectedDate}
                     bloodRequest={bloodRequest}
+                    setBloodRequest={setBloodRequest}
                 ></RequestModal>}
         </section>
     );

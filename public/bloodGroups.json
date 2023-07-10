@@ -1,6 +1,5 @@
 [
     {
-        "_id": 1,
         "name": "A+",
         "img":"https://i.ibb.co/pyqJ2Fd/Blood-A-Positive.jpg",
         "slots": [
@@ -23,7 +22,6 @@
         ]
       },
     {
-        "_id": 2,
         "name": "A-",
         "img":"https://i.ibb.co/yfsZfLm/Blood-A-Negative.jpg",
         "slots": [
@@ -46,7 +44,6 @@
         ]
       },
     {
-        "_id": 3,
         "name": "B+",
         "img":"https://i.ibb.co/25qkLvc/Blood-B-Positive.jpg",
         "slots": [
@@ -69,7 +66,6 @@
         ]
       },
     {
-        "_id": 4,
         "name": "B-",
         "img":"https://i.ibb.co/n3596ZQ/Blood-B-Negative.jpg",
         "slots": [
@@ -92,7 +88,6 @@
         ]
       },
     {
-        "_id": 5,
         "name": "AB+",
         "img":"https://i.ibb.co/S6R4S98/Blood-AB-Positive.jpg",
         "slots": [
@@ -115,7 +110,6 @@
         ]
       },
     {
-        "_id": 6,
         "name": "AB-",
         "img":"https://i.ibb.co/zNGzcvg/Blood-AB-Negative.jpg",
         "slots": [
@@ -138,7 +132,6 @@
         ]
       },
     {
-        "_id": 7,
         "name": "O+",
         "img":"https://i.ibb.co/DYss1Ly/Blood-O-Positive.jpg",
         "slots": [
@@ -161,7 +154,6 @@
         ]
       },
     {
-        "_id": 8,
         "name": "O-",
         "img":"https://i.ibb.co/xML1MW5/Blood-O-Negative.jpg",
         "slots": [
