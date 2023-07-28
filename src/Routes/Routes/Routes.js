@@ -6,6 +6,7 @@ import Register from "../../Pages/Register/Register";
 import Dashboard from "../../Pages/DashBoard/Dashboard/Dashboard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BloodRequest from "../../Pages/BloodRequest/BloodRequest/BloodRequest";
+import AboutUs from "../../Pages/AboutUs/AboutUs";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/bloodRequests',
                 element: <BloodRequest></BloodRequest>
+            },
+            {
+                path: '/aboutUs',
+                element: <AboutUs></AboutUs>
             }
         ]
     },
