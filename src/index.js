@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-day-picker/dist/style.css';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import AuthProvider from './contexts/AuthProvider';
 import { QueryClient, QueryClientProvider} from 'react-query'
 
