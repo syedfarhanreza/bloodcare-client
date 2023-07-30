@@ -7,11 +7,11 @@ import { useQuery } from 'react-query';
 
 const AvailableRequest = ({ selectedDate }) => {
     const [bloodRequest, setBloodRequest] = useState(null);
-
+    const date = format(selectedDate, 'PP');
     const { data: bloodGroups = [] } = useQuery({
-        queryKey: ['bloodGroups'],
+        queryKey: ['bloodGroups', date],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/bloodGroups')
+            const res = await fetch(`http://localhost:5000/bloodGroups?date=${date}`)
             const data = await res.json();
             return data
         }

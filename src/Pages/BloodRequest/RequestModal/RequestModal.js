@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 
 
 const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
-    const { name, slots } = bloodRequest;
+    const { name} = bloodRequest;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
 
@@ -15,19 +15,21 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
     const handleRequest = event => {
         event.preventDefault();
         const form = event.target;
-        const slot = form.slot.value;
         const applicantName = form.applicantName.value;
         const email = form.email.value;
         const phone = form.phone.value;
+        const hospital = form.hospital.value;
+        const message = form.message.value;
 
         const booking = {
             requestedDate: date,
             bloodRequest: name,
             applicant: applicantName,
-            slot,
             email,
             phone,
             requestedTime: selectedTime.toLocaleTimeString(),
+            hospital,
+            message,
         }
 
         fetch('http://localhost:5000/requests', {
@@ -56,6 +58,7 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
                     <form onSubmit={handleRequest} className='grid grid-cols-1 gap-3 mt-10'>
                         <input type="text" disabled value={date} className="input w-full input-bordered " />
                         <DatePicker
+                            required
                             selected={selectedTime}
                             onChange={date => setSelectedTime(date)}
                             showTimeSelect
@@ -65,17 +68,11 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
                             dateFormat="h:mm aa"
                             className="input w-full input-bordered"
                         />
-                        {/* <select name="slot" className="select select-bordered w-full">
-                            {
-                                slots.map((slot, i) => <option
-                                    value={slot}
-                                    key={i}
-                                >{slot}</option>)
-                            }
-                        </select> */}
                         <input name="applicantName" type="text" defaultValue={user?.displayName} required placeholder="Your Name" disabled className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} required placeholder="Email Address" disabled className="input w-full input-bordered" />
                         <input name="phone" type="text" required placeholder="Phone Number" className="input w-full input-bordered" />
+                        <input name="hospital" type="text" required placeholder="Select Hospital" className="input w-full input-bordered" />
+                        <input name="message" type="text" required placeholder="Your Message" className="input w-full input-bordered" />
                         <br />
                         <input className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>
