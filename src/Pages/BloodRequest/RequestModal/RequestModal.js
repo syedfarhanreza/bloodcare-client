@@ -5,12 +5,12 @@ import { toast } from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 
 
-const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
+const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate,refetch }) => {
     const { name} = bloodRequest;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
 
-    const [selectedTime, setSelectedTime] = useState(new Date());
+    const [selectedTime, setSelectedTime] = useState(null);
 
     const handleRequest = event => {
         event.preventDefault();
@@ -44,7 +44,8 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
                 console.log(data);
                 if (data.acknowledged) {
                     setBloodRequest(null);
-                    toast.success('Request Confirmed')
+                    toast.success('Request Confirmed');
+                    refetch();
                 }
             })
     }
@@ -63,6 +64,7 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate }) => {
                             onChange={date => setSelectedTime(date)}
                             showTimeSelect
                             showTimeSelectOnly
+                            placeholderText="Select Time"
                             timeIntervals={15}
                             timeCaption="Time"
                             dateFormat="h:mm aa"

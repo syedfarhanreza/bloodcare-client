@@ -4,18 +4,23 @@ import bloodTypes from '../../../assets/BloodRequestBanner/types of blood.jpg'
 import RequestOption from './RequestOption';
 import RequestModal from '../RequestModal/RequestModal';
 import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 const AvailableRequest = ({ selectedDate }) => {
     const [bloodRequest, setBloodRequest] = useState(null);
     const date = format(selectedDate, 'PP');
-    const { data: bloodGroups = [] } = useQuery({
+    const { data: bloodGroups = [], refetch , isLoading} = useQuery({
         queryKey: ['bloodGroups', date],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/bloodGroups?date=${date}`)
             const data = await res.json();
             return data
         }
-    })
+    });
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     return (
         <section className='mt-16 bg-base-100 mx-20 my-20'>
@@ -38,6 +43,7 @@ const AvailableRequest = ({ selectedDate }) => {
                     selectedDate={selectedDate}
                     bloodRequest={bloodRequest}
                     setBloodRequest={setBloodRequest}
+                    refetch = {refetch}
                 ></RequestModal>}
         </section>
     );
