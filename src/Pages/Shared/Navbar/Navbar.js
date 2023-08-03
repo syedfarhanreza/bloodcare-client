@@ -26,13 +26,13 @@ const Navbar = () => {
             user?.uid ?
                 <>
                     <li><Link to="/dashboard">Dashboard</Link></li>
-                    <li><Link onClick={handleLogOut}>Logout</Link></li>
+                    <li><Link onClick={handleLogOut} className="btn btn-outline btn-warning" >Logout</Link></li>
                 </>
-                : <li><Link to="/login">Login</Link></li>
+                : <li><Link to="/login" className="btn btn-success">Login</Link></li>
         }
     </React.Fragment>
     return (
-        <div className="navbar bg-red-600">
+        <div className="navbar bg-red-600"> 
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

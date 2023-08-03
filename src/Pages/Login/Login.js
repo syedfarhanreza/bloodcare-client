@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link,useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { logIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -48,16 +51,27 @@ const Login = () => {
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label"><span className="label-text">Password</span></label>
-                            <input type="password"
-                                {...register("password", {
-                                    required: "Password is required",
-                                    minLength: { value: 6, message: 'Password must be 6 characters or longer' },
-                                })}
-                                className="input input-bordered w-full max-w-xs" />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: { value: 6, message: 'Password must be 6 characters or longer' },
+                                    })}
+                                    className="input input-bordered w-full max-w-xs"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state on button click
+                                    className="absolute top-1/2 right-2 transform -translate-y-1/2"
+                                >
+                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                </button>
+                            </div>
                             {errors.password && <p className='text-red-600' role="alert">{errors.password?.message}</p>}
                             <label className="label"><span className="label-text">Forget Password?</span></label>
                         </div>
-                        <input className='btn btn-accent w-full mb-2' value="Login" type="submit" />
+                        <input className='btn btn-accent w-full max-w-xs mb-2' value="Login" type="submit" />
                         <div>
                             {loginError && <p className='text-red-600'> {loginError} </p>}
                         </div>

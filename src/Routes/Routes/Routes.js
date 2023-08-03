@@ -8,6 +8,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BloodRequest from "../../Pages/BloodRequest/BloodRequest/BloodRequest";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import DashboardLayout from "../../Layout/DashboardLayout";
+import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
 
 
 const router = createBrowserRouter([
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <RequestForBlood></RequestForBlood>
             }
         ]
     }

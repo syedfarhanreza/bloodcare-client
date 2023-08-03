@@ -8,7 +8,12 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import AuthProvider from './contexts/AuthProvider';
-import { QueryClient, QueryClientProvider} from 'react-query'
+import { QueryClient, QueryClientProvider} from 'react-query';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(faEye, faEyeSlash);
 
 const queryClient = new QueryClient()
 

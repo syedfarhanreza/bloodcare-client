@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
 
@@ -20,11 +23,21 @@ const Register = () => {
                 console.log(user);
                 toast('User Created Successfully.');
                 const userInfo = {
-                    displayName: data.name
+                    displayName: data.name,
+                    phoneNumber: data.number,
+                    nidNumber: data.nid,
+                    dateOfBirth: data.dob,
+                    gender: data.gender,
+                    bloodGroup: data.blood,
+                    address: data.address,
+                    district: data.district,
+                    country: data.country,
+                    email: data.email,
+                    registerAs: data.user
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/');
+                        saveUser(userInfo)
                      })
                     .catch(err => console.log(err));
             })
@@ -32,6 +45,22 @@ const Register = () => {
                 console.log(error)
                 setSignUpError(error.message)
             });
+    }
+
+    const saveUser = (data) => {
+        const user = {data};
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })  
+        .then(res => res.json())
+        .then(data => {
+            console.log('save user',data);
+            navigate('/');
+        })
     }
 
     return (
@@ -164,12 +193,24 @@ const Register = () => {
                         </div>
                         <div className="form-control w-full ">
                             <label className="label"><span className="label-text">Password</span></label>
-                            <input type="password"
-                                {...register("password", {
-                                    required: "Password is required",
-                                    minLength: { value: 6, message: 'Password must be 6 characters or longer' },
-                                })}
-                                className="input input-bordered w-full" />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: { value: 6, message: 'Password must be 6 characters or longer' },
+                                    })}
+                                    className="input input-bordered w-full"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state on button click
+                                    className="absolute top-1/2 right-2 transform -translate-y-1/2"
+                                >
+                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                </button>
+                            </div>
+
                             {errors.password && <p className='text-red-600' role="alert">{errors.password?.message}</p>}
                         </div>
                         <div className='grid gap-5 grid-cols-2 mb-5'>
