@@ -17,17 +17,17 @@ const RequestForBlood = () => {
     })
 
     return (
-        <div>
-            <h3 className="text-3xl my-5">Blood Requests</h3>
+        <div className="container mx-auto p-4">
+            <h3 className="text-xl my-3 text-center font-bold text-red-600">Blood Requests</h3>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Date</th>
-                            <th>Time</th>
+                            <th className='text-red-600 font-bold'>Date</th>
+                            <th className='text-red-600 font-bold'>Time</th>
                             <th>Name</th>
-                            <th>Blood Group</th>
+                            <th className='text-red-600 font-bold'>Blood Group</th>
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>Hospital</th>
@@ -38,10 +38,10 @@ const RequestForBlood = () => {
                         {
                            requests.map((requests, i) =>   <tr key={requests._id}>
                             <th>{i+1}</th>
-                            <td>{requests.requestedDate}</td>
-                            <td>{requests.requestedTime}</td>
-                            <td>{requests.applicant}</td>
-                            <td>{requests.bloodRequest}</td>
+                            <td className='text-red-600 font-bold'>{requests.requestedDate}</td>
+                            <td className='text-red-600 font-bold'>{requests.requestedTime}</td>
+                            <td >{requests.applicant}</td>
+                            <td className='text-red-600 font-bold'>{requests.bloodRequest}</td>
                             <td>{requests.email}</td>
                             <td>{requests.phone}</td>
                             <td>{requests.hospital}</td>

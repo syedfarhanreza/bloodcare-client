@@ -4,14 +4,17 @@ import { Link,useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { GoogleAuthProvider} from 'firebase/auth';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { logIn } = useContext(AuthContext);
+    const { logIn, providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+
+    const googleProvider = new GoogleAuthProvider();
 
     const from = location.state?.from?.pathname || '/';
 
@@ -29,6 +32,34 @@ const Login = () => {
                 setLoginError(error.message);
             });
     }
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const name = result.user.displayName;
+                const email = result.user.email;
+                console.log(result.user.email)
+                saveUser(name, email);
+            })
+            .catch(e => console.error(e))
+    }
+
+    const saveUser = (name, email) => {
+        const user = {name, email};
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })  
+        .then(res => res.json())
+        .then(data => {
+            console.log('save user',data);
+            navigate('/');
+        })
+    }
+
 
     return (
         <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat', }}>
@@ -79,11 +110,12 @@ const Login = () => {
                     <p>New to BloodCare? <Link className='text-blue-600' to="/register">Register here!!!</Link></p>
                     <div className="divider">OR</div>
                     <p>Social Connect: </p>
-                    <div className='flex gap-5 justify-center'>
+                    {/* <div className='flex gap-5 justify-center'>
                         <h1>Google </h1>
                         <h1>Facebook </h1>
                         <h1>LinkedIn</h1>
-                    </div>
+                    </div> */}
+                    <button onClick={handleGoogleSignIn} className='btn btn-success w-full max-w-xs my-2 text-white'>CONTINUE WITH GOOGLE</button>
                 </div>
             </div>
         </div>
