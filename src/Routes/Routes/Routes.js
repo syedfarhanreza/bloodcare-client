@@ -9,6 +9,7 @@ import BloodRequest from "../../Pages/BloodRequest/BloodRequest/BloodRequest";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
+import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 
 
 const router = createBrowserRouter([
@@ -45,7 +46,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <RequestForBlood></RequestForBlood>
-            }
+            },
+            {
+                path: '/dashboard/allusers',
+                element: <AllUsers></AllUsers>
+            },
         ]
     }
 ])
