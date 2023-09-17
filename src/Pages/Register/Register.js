@@ -33,11 +33,11 @@ const Register = () => {
                     district: data.district,
                     country: data.country,
                     email: data.email,
-                    registerAs: data.user
+                    registerAs: data.role
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(userInfo)
+                        saveUser(data.name,data.number,data.nid,data.dob,data.gender,data.blood, data.address,data.district, data.country,data.email,data.role)
                      })
                     .catch(err => console.log(err));
             })
@@ -47,8 +47,8 @@ const Register = () => {
             });
     }
 
-    const saveUser = (data) => {
-        const user = {data};
+    const saveUser = (name,email,number,blood,address,district,country,nid,dob,gender,role) => {
+        const user = {name,email,number,blood,address,district,country,nid,dob,gender,role};
         fetch('http://localhost:5000/users',{
             method: 'POST',
             headers: {
@@ -58,8 +58,18 @@ const Register = () => {
         })  
         .then(res => res.json())
         .then(data => {
-            console.log('save user',data);
-            navigate('/');
+            getUserToken(email);
+        })
+    }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+             if(data.accessToken){
+                localStorage.setItem('accessToken', data.accessToken);
+                navigate('/');
+             }
         })
     }
 
@@ -216,8 +226,8 @@ const Register = () => {
                         <div className='grid gap-5 grid-cols-2 mb-5'>
                             <div className="form-control w-full">
                                 <label className="label"><span className="label-text">Register As</span></label>
-                                <select type="user"
-                                    {...register("user", {
+                                <select type="role"
+                                    {...register("role", {
                                         required: "Please input your name",
                                     })}
                                     className="select select-bordered w-full font-bold">
