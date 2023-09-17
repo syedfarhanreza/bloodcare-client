@@ -5,11 +5,15 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { GoogleAuthProvider} from 'firebase/auth';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { logIn, providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+
     const [showPassword, setShowPassword] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -18,6 +22,10 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
+    if(token){
+        navigate(from, {replace: true});
+    }
+
     const handleLogin = data => {
         console.log(data);
         setLoginError('');
@@ -25,7 +33,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, {replace: true})
+                setLoginUserEmail(data.email);
             })
             .catch(error => {
                 console.log(error.message);

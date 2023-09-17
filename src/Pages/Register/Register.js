@@ -5,6 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
 
@@ -12,7 +13,13 @@ const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const handleRegister = (data) => {
         console.log(data);
@@ -47,8 +54,8 @@ const Register = () => {
             });
     }
 
-    const saveUser = (name,email,number,blood,address,district,country,nid,dob,gender,role) => {
-        const user = {name,email,number,blood,address,district,country,nid,dob,gender,role};
+    const saveUser = (name,number,nid,dob,gender,blood,address,district,country,email,role) => {
+        const user = {name,number,nid,dob,gender,blood,address,district,country,email,role};
         fetch('http://localhost:5000/users',{
             method: 'POST',
             headers: {
@@ -58,20 +65,10 @@ const Register = () => {
         })  
         .then(res => res.json())
         .then(data => {
-            getUserToken(email);
+            setCreatedUserEmail(email);
         })
     }
 
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-             if(data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/');
-             }
-        })
-    }
 
     return (
         <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat'}}>

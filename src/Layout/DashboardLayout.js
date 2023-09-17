@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 import Footer from '../Pages/Shared/Footer/Footer';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const DashboardLayout = () => {
     return (
@@ -16,8 +16,8 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-52 h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li><Link>My Blood Requests</Link></li>
+                        <li><Link>My Blood Requests</Link></li>
                     </ul>
 
                 </div>
