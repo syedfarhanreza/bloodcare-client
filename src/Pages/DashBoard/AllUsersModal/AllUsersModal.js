@@ -6,24 +6,60 @@ const AllUsersModal = ({ selectedUser }) => {
         <>
             <input type="checkbox" id="user-modal" className="modal-toggle" />
             <div className="modal">
-                <div className="modal-box relative ">
-                    <label htmlFor="user-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <div className='grid justify-items-center bg-red-500 p-5 mb-5'>
+                <div className="modal-box relative">
+                    <label htmlFor="user-modal" className="btn btn-sm btn-circle absolute right-2 top-2 ">✕</label>
+                    <div className='grid justify-items-center p-5 mb-3 m-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
                         <img className='w-1/2 rounded-full' src={propic} alt="" />
                     </div>
-                    <div className="text-center">
-                        <h1 className="text-2xl font-semibold mb-2">{name}</h1>
-                        <p className="text-gray-600 mb-2">Phone Number: {number}</p>
-                        <p className="text-gray-600 mb-2">NID: {nid}</p>
-                        <p className="text-gray-600 mb-2">Date of Birth: {dob}</p>
-                        <p className="text-gray-600 mb-2">Gender: {gender}</p>
-                        <p className="text-gray-600 mb-2">Blood Type: {blood}</p>
-                        <p className="text-gray-600 mb-2">Address: {address}</p>
-                        <p className="text-gray-600 mb-2">District: {district}</p>
-                        <p className="text-gray-600 mb-2">Country: {country}</p>
-                        <p className="text-gray-600 mb-2">Email: {email}</p>
-                        <p className="text-gray-600">Role: {role}</p>
-                    </div>
+                    <div>
+                        <div className="text-justify">
+                            <h1 className="text-2xl font-semibold mb-2">{name}</h1>
+                            <table className="text-gray-600">
+                                <tbody>
+                                    <tr>
+                                        <td className='font-bold'>Phone Number</td>
+                                        <td className='pl-4 capitalize'>: {number}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>NID</td>
+                                        <td className='pl-4 capitalize'>: {nid}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Date of Birth</td>
+                                        <td className='pl-4 capitalize'>: {dob}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Gender</td>
+                                        <td className='pl-4 capitalize'>: {gender}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Blood Type</td>
+                                        <td className='pl-4 uppercase'>: {blood}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Address</td>
+                                        <td className='pl-4 capitalize'>: {address}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>District</td>
+                                        <td className='pl-4 capitalize'>: {district}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Country</td>
+                                        <td className='pl-4 capitalize'>: {country}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Email</td>
+                                        <td className='pl-4'>: {email}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className='font-bold'>Role</td>
+                                        <td className='pl-4 capitalize'>: {role}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
                 </div>
             </div>
         </>
