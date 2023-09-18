@@ -5,8 +5,8 @@ import { toast } from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
 
 
-const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate,refetch }) => {
-    const { name} = bloodRequest;
+const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) => {
+    const { name } = bloodRequest;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
 

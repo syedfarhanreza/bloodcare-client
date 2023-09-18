@@ -5,7 +5,7 @@ const RequestOption = ({ requestOption, setBloodRequest }) => {
     return (
         <div className="card card-compact  shadow-xl hover:shadow-2xl">
             <figure className="px-10 pt-10">
-                <img className='w-full' src={img} alt="Shoes" />
+                <img className='w-full' src={img} alt="Blood Group Name" />
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title text-red-600">Blood Group: {name}</h2>
