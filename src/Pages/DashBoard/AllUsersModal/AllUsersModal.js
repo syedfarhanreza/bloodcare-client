@@ -13,8 +13,8 @@ const AllUsersModal = ({ selectedUser }) => {
                     </div>
                     <div>
                         <div className="text-justify">
-                            <h1 className="text-2xl font-semibold mb-2">{name}</h1>
-                            <table className="text-gray-600">
+                            <h1 className="text-2xl font-semibold mb-2 mx-5">{name}</h1>
+                            <table className="text-gray-600 mx-5">
                                 <tbody>
                                     <tr>
                                         <td className='font-bold'>Phone Number</td>
