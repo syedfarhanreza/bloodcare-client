@@ -10,6 +10,7 @@ import AboutUs from "../../Pages/AboutUs/AboutUs";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allusers',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
         ]
     }
