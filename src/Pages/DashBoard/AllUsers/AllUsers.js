@@ -16,29 +16,29 @@ const AllUsers = () => {
     })
     const [selectedUser, setSelectedUser] = useState(null);
 
-   const handleMakeAdmin = id => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-        method: 'PUT',
-        headers: {
-            authorization: `bearer ${localStorage.getItem('accessToken')}`
+   const handleMakeAdmin = async (id) => {
+    try {
+        const response = await fetch(`http://localhost:5000/users/admin/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    })
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-    })
-    .then(data => {
-        if(data.modifiedCount > 0){
+
+        const data = await response.json();
+
+        if (data.modifiedCount > 0) {
             toast.success('Make admin successfully');
             refetch();
         }
-    })
-    .catch(error => {
+    } catch (error) {
         console.error('Error:', error);
-    });
-}
+    }
+};
    
     return (
         <div className="container mx-auto p-4">

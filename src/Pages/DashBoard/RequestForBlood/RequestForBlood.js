@@ -7,18 +7,33 @@ const RequestForBlood = () => {
 
     const url = `http://localhost:5000/requests?email=${user?.email}`;
 
-    const { data: requests = [] } = useQuery({
+    const { data: requests, isError, isLoading } = useQuery({
         queryKey: ['requests', user?.email],
         queryFn: async () => {
-            const res = await fetch(url,  {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+            try {
+                const res = await fetch(url, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            });
-            const data = await res.json();
-            return data;
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                throw new Error('Error fetching data');
+            }
         }
-    })
+    });
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error fetching data</div>;
+    }
 
     return (
         <div className="container mx-auto p-4">
@@ -39,7 +54,7 @@ const RequestForBlood = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                        { requests &&
                             requests?.map((requests, i) =>   <tr key={requests._id}>
                             <th>{i+1}</th>
                             <td className='text-red-600 font-bold'>{requests.requestedDate}</td>

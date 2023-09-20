@@ -7,7 +7,7 @@ const AllUsersModal = ({ selectedUser }) => {
             <input type="checkbox" id="user-modal" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor="user-modal" className="btn btn-sm btn-circle absolute right-2 top-2 ">✕</label>
+                    <label htmlFor="user-modal"  className="btn btn-sm btn-circle absolute right-2 top-2 ">✕</label>
                     <div className='grid justify-items-center p-5 mb-3 m-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
                         <img className='w-1/2 rounded-full' src={propic} alt="" />
                     </div>

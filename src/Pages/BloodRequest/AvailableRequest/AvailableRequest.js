@@ -30,7 +30,7 @@ const AvailableRequest = ({ selectedDate }) => {
             <p className='text-center text-red-600 font-bold text-2xl'>Blood Request on {format(selectedDate, 'PP')} </p>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                 {
-                    bloodGroups.map(option => <RequestOption
+                    bloodGroups?.map(option => <RequestOption
                         key={option._id}
                         requestOption={option}
                         setBloodRequest={setBloodRequest}
