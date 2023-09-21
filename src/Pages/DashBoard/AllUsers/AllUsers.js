@@ -42,7 +42,7 @@ const AllUsers = () => {
    
     return (
         <div className="container mx-auto p-4">
-            <h3 className="text-xl my-3 text-center font-bold text-red-600">All Users</h3>
+            <h3 className="text-3xl my-3 text-center font-bold text-red-600">All Users</h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

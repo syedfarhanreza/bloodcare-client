@@ -4,11 +4,28 @@ import separator from '../../../assets/separator/separator.png'
 
 const AddHospital = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
+
     const handleAddHospital = data => {
-        console.log(data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?&key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgData => {
+           if(imgData.success){
+            console.log(imgData.data.url);
+           }
+        })
+
     }
     return (
-        <div className='h-[800px] flex bg-grey-400 justify-center items-center mb-7'>
+        <div className='h-[800px] flex justify-center items-center mb-7'>
             <div className='w-2/5  bg-slate-300 p-7 shadow-xl '>
                 <h2 className="text-3xl text-center font-bold ">Add Hospital</h2>
                 <img className='m-auto' src={separator} alt="separator" />
@@ -58,9 +75,9 @@ const AddHospital = () => {
                     <div className="form-control w-full mb-3">
                         <label className="label"> <span className="label-text font-bold">Upload Image</span></label>
                         <input type="file" {...register("image", {
-                            required: "Photo is Required"
+                            required: "Image is Required"
                         })} className="w-full" />
-                        {errors.file && <p className='text-red-600' role="alert">{errors.file?.message}</p>}
+                        {errors.image && <p className='text-red-600' role="alert">{errors.image?.message}</p>}
                     </div>
                     <input className='btn btn-accent w-full mt-4 mb-3' value="Add Hospital" type="submit" />
                 </form>
