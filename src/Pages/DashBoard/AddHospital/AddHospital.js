@@ -1,11 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import separator from '../../../assets/separator/separator.png'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddHospital = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     
     const imageHostKey = process.env.REACT_APP_imgbb_key;
+
+    const navigate = useNavigate();
 
     const handleAddHospital = data => {
         const image = data.image[0];
@@ -20,6 +24,29 @@ const AddHospital = () => {
         .then(imgData => {
            if(imgData.success){
             console.log(imgData.data.url);
+            const hospital = {
+                name: data.name,
+                email: data.email,
+                number: data.number,
+                location: data.location,
+                details: data.details,
+                image:  imgData.data.url
+            }
+            // save hospital information to the database
+            fetch('http://localhost:5000/hospitals', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(hospital)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                toast.success(`${data.name} is added successfully`);
+                navigate('/dashboard/manageHospitals')
+            })
            }
         })
 
@@ -39,13 +66,7 @@ const AddHospital = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label"> <span className="label-text font-bold">Email</span></label>
-                        <input type="email" {...register("email", {
-                            required: "Email is Required",
-                            pattern: {
-                                value: /\S+@\S+\.\S+/,
-                                message: "Entered value does not match email format"
-                            }
-                        })} className="input input-bordered w-full" />
+                        <input type="email" {...register("email")} className="input input-bordered w-full" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </div>
                     <div className="form-control w-full">
@@ -68,7 +89,7 @@ const AddHospital = () => {
                     <div className="form-control w-full ">
                         <label className="label"> <span className="label-text font-bold">Hospital Details</span></label>
                         <textarea type="text" {...register("details", {
-                            required: "Details is Required"
+                            required: "Hospital details is Required"
                         })} className="textarea textarea-bordered w-full" />
                         {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
                     </div>

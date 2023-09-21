@@ -12,6 +12,7 @@ import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlo
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddHospital from "../../Pages/DashBoard/AddHospital/AddHospital";
+import ManageHospitals from "../../Pages/DashBoard/ManageHospitals/ManageHospitals";
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/add-hospital',
                 element: <AdminRoute><AddHospital></AddHospital></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageHospitals',
+                element: <AdminRoute><ManageHospitals></ManageHospitals></AdminRoute>
             },
         ]
     }
