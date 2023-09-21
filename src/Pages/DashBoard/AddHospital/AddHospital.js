@@ -8,9 +8,9 @@ const AddHospital = () => {
         console.log(data);
     }
     return (
-        <div className='h-[800px] flex  justify-center items-center mb-7'>
-            <div className='w-2/5  bg-slate-300 p-7 my-10 shadow-xl '>
-                <h2 className="text-3xl text-center ">Add Hospital</h2>
+        <div className='h-[700px] flex  justify-center items-center mb-7'>
+            <div className='w-2/5  bg-slate-300 p-7 my-5 shadow-xl '>
+                <h2 className="text-3xl text-center font-bold ">Add Hospital</h2>
                 <img className='m-auto' src={separator} alt="separator" />
                 <form onSubmit={handleSubmit(handleAddHospital)}>
                     <div className="form-control w-full">
