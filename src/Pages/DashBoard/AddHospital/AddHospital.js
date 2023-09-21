@@ -8,8 +8,8 @@ const AddHospital = () => {
         console.log(data);
     }
     return (
-        <div className='h-[700px] flex  justify-center items-center mb-7'>
-            <div className='w-2/5  bg-slate-300 p-7 my-5 shadow-xl '>
+        <div className='h-[800px] flex bg-grey-400 justify-center items-center mb-7'>
+            <div className='w-2/5  bg-slate-300 p-7 shadow-xl '>
                 <h2 className="text-3xl text-center font-bold ">Add Hospital</h2>
                 <img className='m-auto' src={separator} alt="separator" />
                 <form onSubmit={handleSubmit(handleAddHospital)}>
@@ -47,6 +47,13 @@ const AddHospital = () => {
                             required: "Location is Required"
                         })} className="input input-bordered w-full" />
                         {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"> <span className="label-text font-bold">Hospital Details</span></label>
+                        <textarea type="text" {...register("details", {
+                            required: "Details is Required"
+                        })} className="textarea textarea-bordered w-full" />
+                        {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
                     </div>
                     <div className="form-control w-full mb-3">
                         <label className="label"> <span className="label-text font-bold">Upload Image</span></label>
