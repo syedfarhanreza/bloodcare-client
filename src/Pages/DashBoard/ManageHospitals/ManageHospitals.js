@@ -2,9 +2,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 const ManageHospitals = () => {
-    const { data: hospitals } = useQuery({
+    const { data: hospitals , isLoading} = useQuery({
         queryKey: ['hospitals'],
         queryFn: async () => {
             try {
@@ -20,7 +21,11 @@ const ManageHospitals = () => {
 
             }
         }
-    })
+    });
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className="container mx-auto p-4">
             <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Hospitals</h2>
