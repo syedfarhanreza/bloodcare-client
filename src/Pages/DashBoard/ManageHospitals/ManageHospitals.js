@@ -1,10 +1,12 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
 const ManageHospitals = () => {
+    const [deletingHospital, setDeletingHospital] = useState(null);
     const { data: hospitals , isLoading} = useQuery({
         queryKey: ['hospitals'],
         queryFn: async () => {
@@ -35,24 +37,16 @@ const ManageHospitals = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th></th>
                             <th>Hospital Name</th>
                             <th>Location</th>
                             <th>Contact</th>
-                            <th></th>
-                            <th></th>
+                            <th>Details</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             hospitals?.map((hospital, i) => <tr key={hospital._id}>
-                                <th>
-                                <button
-                                        className="btn btn-ghost btn-xs"
-                                    >
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </th>
                                 <th>{i + 1}</th>
                                 <td>
                                     <div className="flex items-center space-x-3">
@@ -74,11 +68,23 @@ const ManageHospitals = () => {
                                 <th>
                                     <button className="btn btn-ghost btn-xs">details</button>
                                 </th>
+                                <th>
+                                <label onClick={() => setDeletingHospital(hospital) } htmlFor="confirmation-modal"  className="btn btn-ghost btn-xs">
+                                     <FontAwesomeIcon icon={faTrash} />
+                                </label>
+                                </th>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+            {
+                deletingHospital && <ConfirmationModal
+                title={`Are you sure you want to delete?`}
+                message={`It you delete ${deletingHospital.name}. It cannot be undone`}
+                >  
+                </ConfirmationModal>
+            }
         </div>
     );
 };
