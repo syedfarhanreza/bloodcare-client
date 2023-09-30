@@ -4,19 +4,16 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
+import toast from 'react-hot-toast';
 
 const ManageHospitals = () => {
     const [deletingHospital, setDeletingHospital] = useState(null);
 
-    const closeModal = () =>{
+    const closeModal = () => {
         setDeletingHospital(null);
     }
 
-    const handleDeleteHospital = hospital => {
-        console.log(hospital)
-    }
-
-    const { data: hospitals , isLoading} = useQuery({
+    const { data: hospitals, isLoading, refetch } = useQuery({
         queryKey: ['hospitals'],
         queryFn: async () => {
             try {
@@ -34,7 +31,23 @@ const ManageHospitals = () => {
         }
     });
 
-    if(isLoading){
+    const handleDeleteHospital = hospital => {
+        fetch(`http://localhost:5000/hospitals/${hospital._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount > 0){
+                    refetch();
+                    toast.success(`Hospital: ${hospital.name} deleted successfully`)
+                }
+            })
+    }
+
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (
@@ -78,9 +91,9 @@ const ManageHospitals = () => {
                                     <button className="btn btn-ghost btn-xs">details</button>
                                 </th>
                                 <th>
-                                <label onClick={() => setDeletingHospital(hospital) } htmlFor="confirmation-modal"  className="btn btn-ghost btn-xs">
-                                     <FontAwesomeIcon icon={faTrash} />
-                                </label>
+                                    <label onClick={() => setDeletingHospital(hospital)} htmlFor="confirmation-modal" className="btn btn-ghost btn-xs">
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </label>
                                 </th>
                             </tr>)
                         }
@@ -89,12 +102,13 @@ const ManageHospitals = () => {
             </div>
             {
                 deletingHospital && <ConfirmationModal
-                title={`Are you sure you want to delete?`}
-                message={`It you delete ${deletingHospital.name}. It cannot be undone`}
-                successAction = {handleDeleteHospital}
-                modalData = {deletingHospital}
-                closeModal = {closeModal}
-                >  
+                    title={`Are you sure you want to delete?`}
+                    message={`It you delete ${deletingHospital.name}. It cannot be undone`}
+                    successAction={handleDeleteHospital}
+                    successButtonName="Delete"
+                    modalData={deletingHospital}
+                    closeModal={closeModal}
+                >
                 </ConfirmationModal>
             }
         </div>
