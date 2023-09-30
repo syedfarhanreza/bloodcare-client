@@ -7,6 +7,15 @@ import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal'
 
 const ManageHospitals = () => {
     const [deletingHospital, setDeletingHospital] = useState(null);
+
+    const closeModal = () =>{
+        setDeletingHospital(null);
+    }
+
+    const handleDeleteHospital = hospital => {
+        console.log(hospital)
+    }
+
     const { data: hospitals , isLoading} = useQuery({
         queryKey: ['hospitals'],
         queryFn: async () => {
@@ -82,6 +91,9 @@ const ManageHospitals = () => {
                 deletingHospital && <ConfirmationModal
                 title={`Are you sure you want to delete?`}
                 message={`It you delete ${deletingHospital.name}. It cannot be undone`}
+                successAction = {handleDeleteHospital}
+                modalData = {deletingHospital}
+                closeModal = {closeModal}
                 >  
                 </ConfirmationModal>
             }
