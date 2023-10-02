@@ -17,7 +17,9 @@ const Register = () => {
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
 
-    if(token){
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
+
+    if (token) {
         navigate('/');
     }
 
@@ -29,24 +31,41 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 toast('User Created Successfully.');
-                const userInfo = {
-                    displayName: data.name,
-                    phoneNumber: data.number,
-                    nidNumber: data.nid,
-                    dateOfBirth: data.dob,
-                    gender: data.gender,
-                    bloodGroup: data.blood,
-                    address: data.address,
-                    district: data.district,
-                    country: data.country,
-                    email: data.email,
-                    registerAs: data.role
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        saveUser(data.name,data.number,data.nid,data.dob,data.gender,data.blood, data.address,data.district, data.country,data.email,data.role)
-                     })
-                    .catch(err => console.log(err));
+                const image = data.image[0];
+                const formData = new FormData();
+                formData.append('image', image);
+                const url = `https://api.imgbb.com/1/upload?&key=${imageHostKey}`
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(imgData => {
+                        if (imgData.success) {
+                            console.log(imgData.data.url);
+                            const userInfo = {
+                                displayName: data.name,
+                                phoneNumber: data.number,
+                                nidNumber: data.nid,
+                                dateOfBirth: data.dob,
+                                gender: data.gender,
+                                bloodGroup: data.blood,
+                                address: data.address,
+                                district: data.district,
+                                country: data.country,
+                                email: data.email,
+                                registerAs: data.role,
+                                image: imgData.data.url
+                            }
+                            updateUser(userInfo)
+                                .then(() => {
+                                    saveUser(data.name, data.number, data.nid, data.dob, data.gender, data.blood, data.address, data.district, data.country, data.email, data.role, imgData.data.url)
+                                })
+                                .catch(err => console.log(err));
+                        }
+
+                    })
+
             })
             .catch(error => {
                 console.log(error)
@@ -54,24 +73,24 @@ const Register = () => {
             });
     }
 
-    const saveUser = (name,number,nid,dob,gender,blood,address,district,country,email,role) => {
-        const user = {name,number,nid,dob,gender,blood,address,district,country,email,role};
-        fetch('http://localhost:5000/users',{
+    const saveUser = (name, number, nid, dob, gender, blood, address, district, country, email, role, image) => {
+        const user = { name, number, nid, dob, gender, blood, address, district, country, email, role, image };
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
-        })  
-        .then(res => res.json())
-        .then(data => {
-            setCreatedUserEmail(email);
         })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+            })
     }
 
 
     return (
-        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat'}}>
+        <div className='hero min-h-screen' style={{ backgroundImage: `url("https://i.ibb.co/kMVZydc/BloodRB.jpg")`, backgroundRepeat: 'no-repeat' }}>
             <div className='flex justify-center items-center font-extrabold'>
                 <div className='w-auto bg-slate-300 p-7 my-10 shadow-2xl' >
                     <h2 className='text-xl text-center font-bold'>Registration Form</h2>
@@ -235,16 +254,16 @@ const Register = () => {
                                 </select>
                                 {errors.user && <p className='text-red-600' role="alert">{errors.user?.message}</p>}
                             </div>
-                            {/* <div className="form-control w-full mb-3">
-                            <label className="label"><span className="label-text">Upload Image</span></label>
-                            <input type="file"
-                                {...register("image", {
-                                    required: "Please input your image",
-                                }
-                                )}
-                                className="w-full" />
-                            {errors.file && <p className='text-red-600' role="alert">{errors.file?.message}</p>}
-                        </div> */}
+                            <div className="form-control w-full mb-3">
+                                <label className="label"><span className="label-text">Upload Image</span></label>
+                                <input type="file"
+                                    {...register("image", {
+                                        required: "Please input your image",
+                                    }
+                                    )}
+                                    className="w-full" />
+                                {errors.file && <p className='text-red-600' role="alert">{errors.file?.message}</p>}
+                            </div>
                         </div>
                         <input className='btn btn-accent w-full mb-2' value="Register" type="submit" />
                         <div>
