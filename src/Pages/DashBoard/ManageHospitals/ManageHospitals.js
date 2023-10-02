@@ -5,9 +5,11 @@ import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import toast from 'react-hot-toast';
+import ManageHospitalsModal from './ManageHospitalsModal';
 
 const ManageHospitals = () => {
     const [deletingHospital, setDeletingHospital] = useState(null);
+    const [selectedHospital, setSelectedHospital] = useState(null);
 
     const closeModal = () => {
         setDeletingHospital(null);
@@ -40,7 +42,7 @@ const ManageHospitals = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.deletedCount > 0){
+                if (data.deletedCount > 0) {
                     refetch();
                     toast.success(`Hospital: ${hospital.name} deleted successfully`)
                 }
@@ -88,7 +90,13 @@ const ManageHospitals = () => {
                                     <div className="text-sm font-bold">{hospital.email}</div>
                                 </td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <label
+                                        htmlFor="user-modal"
+                                        className="btn btn-info btn-xs"
+                                        onClick={() => {
+                                            setSelectedHospital(hospital);
+                                        }}
+                                    >Details</label>
                                 </th>
                                 <th>
                                     <label onClick={() => setDeletingHospital(hospital)} htmlFor="confirmation-modal" className="btn btn-ghost btn-xs">
@@ -110,6 +118,12 @@ const ManageHospitals = () => {
                     closeModal={closeModal}
                 >
                 </ConfirmationModal>
+            }
+            {
+                selectedHospital &&
+                <ManageHospitalsModal
+                    selectedHospital={selectedHospital}
+                ></ManageHospitalsModal>
             }
         </div>
     );

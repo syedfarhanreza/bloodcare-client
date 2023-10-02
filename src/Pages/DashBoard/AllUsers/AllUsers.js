@@ -98,7 +98,8 @@ const AllUsers = () => {
                     selectedUser &&
                     <AllUsersModal
                         selectedUser={selectedUser}
-                    ></AllUsersModal>}
+                    ></AllUsersModal>
+                }
             </div>
         </div>
     );
