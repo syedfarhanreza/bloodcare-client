@@ -2,8 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
-import Register from "../../Pages/Register/Register";
-import Dashboard from "../../Pages/DashBoard/Dashboard/Dashboard";
+import Register from "../../Pages/Register/Register";   
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BloodRequest from "../../Pages/BloodRequest/BloodRequest/BloodRequest";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
@@ -13,6 +12,8 @@ import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddHospital from "../../Pages/DashBoard/AddHospital/AddHospital";
 import ManageHospitals from "../../Pages/DashBoard/ManageHospitals/ManageHospitals";
+import AddBlog from "../../Pages/DashBoard/AddBlog/AddBlog";
+import ManageBlogs from "../../Pages/DashBoard/ManageBlogs/ManageBlogs";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manageHospitals',
                 element: <AdminRoute><ManageHospitals></ManageHospitals></AdminRoute>
+            },
+            {
+                path: '/dashboard/add-blog',
+                element: <AdminRoute><AddBlog></AddBlog></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageBlogs',
+                element: <AdminRoute><ManageBlogs></ManageBlogs></AdminRoute>
             },
         ]
     }

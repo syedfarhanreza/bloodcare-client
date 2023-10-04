@@ -111,7 +111,7 @@ const ManageHospitals = () => {
             {
                 deletingHospital && <ConfirmationModal
                     title={`Are you sure you want to delete?`}
-                    message={`It you delete ${deletingHospital.name}. It cannot be undone`}
+                    message={`It you delete ${deletingHospital.name}. It cannot be undone.`}
                     successAction={handleDeleteHospital}
                     successButtonName="Delete"
                     modalData={deletingHospital}
