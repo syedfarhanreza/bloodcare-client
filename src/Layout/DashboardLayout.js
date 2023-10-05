@@ -26,7 +26,7 @@ const DashboardLayout = () => {
                                     <li><Link to='/dashboard/allusers'>All Users </Link></li>
                                     <li><Link to='/dashboard/add-hospital'>Add Hospital </Link></li>
                                     <li><Link to='/dashboard/manageHospitals'>Manage Hospitals </Link></li>
-                                    <li><Link to='/dashboard/add-blog'>Add Blog</Link></li>
+                                    <li><Link to='/dashboard/post-blog'>Post Blog</Link></li>
                                     <li><Link to='/dashboard/manageBlogs'>Manage Blogs</Link></li>
                                 {/* <div className="dropdown dropdown-bottom w-full px-4 py-3 bg-base-200 hover:bg-base-300 rounded-xl">
                                     <label tabIndex={0}>Hospitals</label>

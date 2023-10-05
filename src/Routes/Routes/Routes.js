@@ -12,8 +12,8 @@ import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddHospital from "../../Pages/DashBoard/AddHospital/AddHospital";
 import ManageHospitals from "../../Pages/DashBoard/ManageHospitals/ManageHospitals";
-import AddBlog from "../../Pages/DashBoard/AddBlog/AddBlog";
 import ManageBlogs from "../../Pages/DashBoard/ManageBlogs/ManageBlogs";
+import PostBlog from "../../Pages/DashBoard/PostBlog/PostBlog";
 
 
 const router = createBrowserRouter([
@@ -64,8 +64,8 @@ const router = createBrowserRouter([
                 element: <AdminRoute><ManageHospitals></ManageHospitals></AdminRoute>
             },
             {
-                path: '/dashboard/add-blog',
-                element: <AdminRoute><AddBlog></AddBlog></AdminRoute>
+                path: '/dashboard/post-blog',
+                element: <AdminRoute><PostBlog></PostBlog></AdminRoute>
             },
             {
                 path: '/dashboard/manageBlogs',
