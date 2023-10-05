@@ -6,6 +6,7 @@ import Loading from '../../Shared/Loading/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
+import separator from '../../../assets/separator/separator.png';
 
 const ManageBlogs = () => {
     const [deletingBlog, setDeletingBlog] = useState(null);
@@ -55,27 +56,31 @@ const ManageBlogs = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Hospitals</h2>
+            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Blogs</h2>
+            <img className='m-auto' src={separator} alt="separator" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                {blogs?.map((blog, i) => (
+                {blogs?.map((blog) => (
                     <div key={blog._id} className="bg-white rounded-lg shadow-lg">
                         <img src={blog.image} alt={blog.name} className="w-full h-48 object-cover rounded-t-lg" />
                         <div className="p-4">
-                            <h3 className="text-xl font-semibold text-gray-800">{blog.name}</h3>
+                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{blog.title}</h3>
+                            <div className='h-[150px]'>
                             <p className="text-gray-600 line-clamp-6">{blog.details}</p>
+                            </div>
                             <div className="mt-4 flex justify-between items-center">
-                                <button
+                                <label
+                                    htmlFor="user-modal"
                                     className="btn btn-outline btn-info btn-xs"
                                     onClick={() => {
                                         setSelectedBlog(blog);
                                     }}
-                                >Details</button>
-                                <button
+                                >Details</label>
+                                <label
                                     onClick={() => setDeletingBlog(blog)}
                                     className="btn btn-ghost btn-xs hover:btn-error"
                                 >
                                     <FontAwesomeIcon icon={faTrash} />
-                                </button>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -84,18 +89,16 @@ const ManageBlogs = () => {
             {deletingBlog && (
                 <ConfirmationModal
                     title={`Are you sure you want to delete?`}
-                    message={`If you delete ${deletingBlog.name}, it cannot be undone.`}
+                    message={`If you delete ${deletingBlog.title}, it cannot be undone.`}
                     successAction={handleDeleteBlog}
                     successButtonName="Delete"
                     modalData={deletingBlog}
                     closeModal={closeModal}
                 />
             )}
-            {selectedBlog && (
-                <ManageBlogsModal
-                    selectedHospital={selectedBlog}
-                />
-            )}
+            {selectedBlog && <ManageBlogsModal
+                selectedBlog={selectedBlog}
+            ></ManageBlogsModal>}
         </div>
     );
 };

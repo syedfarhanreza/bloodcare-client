@@ -55,10 +55,10 @@ const PostBlog = () => {
             <form onSubmit={handleSubmit(handlePostBlog)}>
                 <div className="form-control w-full">
                     <label className="label"> <span className="label-text font-bold">Blog Title</span></label>
-                    <input type="text" {...register("name", {
+                    <input type="text" {...register("title", {
                         required: "Blog Title is Required"
                     })} className="input input-bordered w-full" />
-                    {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
                 <div className="form-control w-full ">
                     <label className="label"> <span className="label-text font-bold">Blog Details</span></label>
