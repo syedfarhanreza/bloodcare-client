@@ -1,17 +1,55 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import separator from '../../../assets/separator/separator.png'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const PostBlog = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const handlePostBlog = data => {
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
 
+    const navigate = useNavigate();
+
+    const handlePostBlog = data => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?&key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgData => {
+           if(imgData.success){
+            console.log(imgData.data.url); 
+            const blog = {
+                name: data.name,
+                details: data.details,
+                image:  imgData.data.url
+            }
+            fetch('http://localhost:5000/blogs', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(blog)
+            })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                toast.success(`${data.name} is added successfully`);
+                navigate('/dashboard/manageBlogs')
+            })
+           }
+        })  
     }
 
     return (
         <div className='h-[700px] w= flex justify-center items-center mb-7'>
-        <div className='w-3/5  bg-slate-300 p-7 shadow-2xl rounded-t-xl '>
+        <div className='w-3/5  bg-slate-300 p-7 shadow-2xl rounded-xl '>
             <h2 className="text-3xl text-center font-bold ">Post Blog</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <form onSubmit={handleSubmit(handlePostBlog)}>
