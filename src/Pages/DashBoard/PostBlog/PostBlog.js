@@ -49,7 +49,7 @@ const PostBlog = () => {
 
     return (
         <div className='h-[700px] w= flex justify-center items-center mb-7'>
-        <div className='w-3/5  bg-slate-300 p-7 shadow-2xl rounded-xl '>
+        <div className='w-3/5  bg-slate-300 p-7 shadow-xl rounded-xl '>
             <h2 className="text-3xl text-center font-bold ">Post Blog</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <form onSubmit={handleSubmit(handlePostBlog)}>
