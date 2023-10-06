@@ -17,9 +17,11 @@ const AllUsers = () => {
     })
     const [selectedUser, setSelectedUser] = useState(null);
     const [deletingUser, setDeletingUser] = useState(null);
+    const [makeAdmin, setMakeAdmin] = useState(null);
 
     const closeModal = () => {
         setDeletingUser(null);
+        setMakeAdmin(null);
     }
 
     const handleMakeAdmin = async (id) => {
@@ -111,7 +113,12 @@ const AllUsers = () => {
                                         }}
                                     >Show Details</label>
                                 </td>
-                                <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
+                                <td>
+                                    {
+                                        user?.role !== 'admin' && <label htmlFor="confirmation-modal" onClick={() => setMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</label>
+                                        
+                                    }
+                                </td>
                             </tr>)
                         }
                     </tbody>
@@ -121,7 +128,7 @@ const AllUsers = () => {
                 {
                     deletingUser && <ConfirmationModal
                         title={`Are you sure you want to delete?`}
-                        message={`It you delete ${deletingUser.name}. It cannot be undone.`}
+                        message={`If you delete ${deletingUser.name}. It cannot be undone.`}
                         successAction={handleDeleteUser}
                         successButtonName="Delete"
                         modalData={deletingUser}
@@ -134,6 +141,17 @@ const AllUsers = () => {
                     <AllUsersModal
                         selectedUser={selectedUser}
                     ></AllUsersModal>
+                }
+                {
+                    makeAdmin && <ConfirmationModal
+                        title={`Are you sure you want to Admin?`}
+                        message={`If you Admin ${makeAdmin.name}. It cannot be undone.`}
+                        successAction={handleMakeAdmin}
+                        successButtonName="Make Admin"
+                        modalData={makeAdmin}
+                        closeModal={closeModal}
+                    >
+                    </ConfirmationModal>
                 }
             </div>
         </div>
