@@ -25,7 +25,7 @@ const PostBlog = () => {
            if(imgData.success){
             console.log(imgData.data.url); 
             const blog = {
-                name: data.name,
+                title: data.title,
                 details: data.details,
                 image:  imgData.data.url
             }

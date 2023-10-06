@@ -76,6 +76,7 @@ const ManageBlogs = () => {
                                     }}
                                 >Details</label>
                                 <label
+                                    htmlFor="confirmation-modal"
                                     onClick={() => setDeletingBlog(blog)}
                                     className="btn btn-ghost btn-xs hover:btn-error"
                                 >

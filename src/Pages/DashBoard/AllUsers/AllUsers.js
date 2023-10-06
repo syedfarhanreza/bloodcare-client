@@ -59,7 +59,7 @@ const AllUsers = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`Hospital: ${user.name} deleted successfully`)
+                    toast.success(`User: ${user.name} deleted successfully`)
                 }
             })
     }
@@ -145,7 +145,7 @@ const AllUsers = () => {
                 {
                     makeAdmin && <ConfirmationModal
                         title={`Are you sure you want to Admin?`}
-                        message={`If you Admin ${makeAdmin.name}. It cannot be undone.`}
+                        message={`If you Admin.It cannot be undone.`}
                         successAction={handleMakeAdmin}
                         successButtonName="Make Admin"
                         modalData={makeAdmin}
