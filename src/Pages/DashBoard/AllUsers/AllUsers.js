@@ -4,6 +4,7 @@ import AllUsersModal from '../AllUsersModal/AllUsersModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
+import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
@@ -15,31 +16,52 @@ const AllUsers = () => {
         }
     })
     const [selectedUser, setSelectedUser] = useState(null);
+    const [deletingUser, setDeletingUser] = useState(null);
 
-   const handleMakeAdmin = async (id) => {
-    try {
-        const response = await fetch(`http://localhost:5000/users/admin/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`,
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.modifiedCount > 0) {
-            toast.success('Make admin successfully');
-            refetch();
-        }
-    } catch (error) {
-        console.error('Error:', error);
+    const closeModal = () => {
+        setDeletingUser(null);
     }
-};
-   
+
+    const handleMakeAdmin = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/users/admin/${id}`, {
+                method: 'PUT',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.modifiedCount > 0) {
+                toast.success('Make admin successfully');
+                refetch();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleDeleteUser = user => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Hospital: ${user.name} deleted successfully`)
+                }
+            })
+    }
+
     return (
         <div className="container mx-auto p-4">
             <h3 className="text-3xl my-3 text-center font-bold text-red-600">All Users</h3>
@@ -64,11 +86,13 @@ const AllUsers = () => {
                         {
                             users.map((user, i) => <tr key={user._id}>
                                 <th>
-                                    <button
+                                    <label
+                                        htmlFor="confirmation-modal"
+                                        onClick={() => setDeletingUser(user)}
                                         className="btn btn-ghost btn-xs"
                                     >
                                         <FontAwesomeIcon icon={faTrash} />
-                                    </button>
+                                    </label>
                                 </th>
                                 <th>{i + 1}</th>
                                 <td className='text-red-600 font-bold'>{user.name}</td>
@@ -87,13 +111,24 @@ const AllUsers = () => {
                                         }}
                                     >Show Details</label>
                                 </td>
-                                <td>{ user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
+                                <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
             <div>
+                {
+                    deletingUser && <ConfirmationModal
+                        title={`Are you sure you want to delete?`}
+                        message={`It you delete ${deletingUser.name}. It cannot be undone.`}
+                        successAction={handleDeleteUser}
+                        successButtonName="Delete"
+                        modalData={deletingUser}
+                        closeModal={closeModal}
+                    >
+                    </ConfirmationModal>
+                }
                 {
                     selectedUser &&
                     <AllUsersModal
