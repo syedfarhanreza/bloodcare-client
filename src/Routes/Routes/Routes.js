@@ -14,6 +14,8 @@ import AddHospital from "../../Pages/DashBoard/AddHospital/AddHospital";
 import ManageHospitals from "../../Pages/DashBoard/ManageHospitals/ManageHospitals";
 import ManageBlogs from "../../Pages/DashBoard/ManageBlogs/ManageBlogs";
 import PostBlog from "../../Pages/DashBoard/PostBlog/PostBlog";
+import AddCampaign from "../../Pages/DashBoard/AddCampaign/AddCampaign";
+import ManageCampaigns from "../../Pages/DashBoard/ManageCampaigns/ManageCampaigns";
 
 
 const router = createBrowserRouter([
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/manageBlogs',
                 element: <AdminRoute><ManageBlogs></ManageBlogs></AdminRoute>
+            },
+            {
+                path: '/dashboard/add-campaign',
+                element: <AdminRoute><AddCampaign></AddCampaign></AdminRoute>
+            },
+            {
+                path: '/dashboard/manageCampaigns',
+                element: <AdminRoute><ManageCampaigns></ManageCampaigns></AdminRoute>
             },
         ]
     }

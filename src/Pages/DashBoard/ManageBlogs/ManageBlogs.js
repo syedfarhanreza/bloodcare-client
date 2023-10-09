@@ -65,7 +65,7 @@ const ManageBlogs = () => {
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-1">{blog.title}</h3>
                             <div className='h-[150px]'>
-                            <p className="text-gray-600 line-clamp-6">{blog.details}</p>
+                                <p className="text-gray-600 line-clamp-6">{blog.details}</p>
                             </div>
                             <div className="mt-4 flex justify-between items-center">
                                 <label
@@ -98,6 +98,7 @@ const ManageBlogs = () => {
                 />
             )}
             {selectedBlog && <ManageBlogsModal
+                refetch={refetch}
                 selectedBlog={selectedBlog}
             ></ManageBlogsModal>}
         </div>

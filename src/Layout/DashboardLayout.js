@@ -28,6 +28,8 @@ const DashboardLayout = () => {
                                     <li><Link to='/dashboard/manageHospitals'>Manage Hospitals </Link></li>
                                     <li><Link to='/dashboard/post-blog'>Post Blog</Link></li>
                                     <li><Link to='/dashboard/manageBlogs'>Manage Blogs</Link></li>
+                                    <li><Link to='/dashboard/add-campaign'>Add Campaign </Link></li>
+                                    <li><Link to='/dashboard/manageCampaigns'>Manage Campaigns </Link></li>
                                 {/* <div className="dropdown dropdown-bottom w-full px-4 py-3 bg-base-200 hover:bg-base-300 rounded-xl">
                                     <label tabIndex={0}>Hospitals</label>
                                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-300 rounded-box w-46">
