@@ -18,10 +18,12 @@ const AllUsers = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [deletingUser, setDeletingUser] = useState(null);
     const [makeAdmin, setMakeAdmin] = useState(null);
+    const [removeAdmin, setRemoveAdmin] = useState(null);
 
     const closeModal = () => {
         setDeletingUser(null);
-        setMakeAdmin(null);
+        setRemoveAdmin(null);
+        setMakeAdmin(null);  
     }
 
     const handleMakeAdmin = async (id) => {
@@ -41,6 +43,29 @@ const AllUsers = () => {
 
             if (data.modifiedCount > 0) {
                 toast.success('Make admin successfully');
+                refetch();
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    const handleRemoveAdmin = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/users/both/${id}`, {
+                method: 'PUT',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.modifiedCount > 0) {
+                toast.success('Remove admin successfully');
                 refetch();
             }
         } catch (error) {
@@ -114,10 +139,23 @@ const AllUsers = () => {
                                     >Show Details</label>
                                 </td>
                                 <td>
-                                    {
-                                        user?.role !== 'admin' && <label htmlFor="confirmation-modal" onClick={() => setMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</label>
-                                        
-                                    }
+                                    {user?.role === 'admin' ? (
+                                        <label
+                                            htmlFor="confirmation-modal"
+                                            onClick={() => setRemoveAdmin(user._id)}
+                                            className='btn btn-outline btn-error btn-xs'
+                                        >
+                                            Remove Admin
+                                        </label>
+                                    ) : (
+                                        <label
+                                            htmlFor="confirmation-modal"
+                                            onClick={() => setMakeAdmin(user._id)}
+                                            className='btn btn-xs btn-outline btn-primary'
+                                        >
+                                            Make Admin
+                                        </label>
+                                    )}
                                 </td>
                             </tr>)
                         }
@@ -153,6 +191,18 @@ const AllUsers = () => {
                     >
                     </ConfirmationModal>
                 }
+                {
+                    removeAdmin && <ConfirmationModal
+                        title={`Are you sure you want to remove Admin?`}
+                        message={`If you remove Admin.It cannot be undone.`}
+                        successAction={handleRemoveAdmin}
+                        successButtonName="Remove Admin"
+                        modalData={removeAdmin}
+                        closeModal={closeModal}
+                    >
+                    </ConfirmationModal>
+                }
+
             </div>
         </div>
     );
