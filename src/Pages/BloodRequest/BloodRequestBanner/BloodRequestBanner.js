@@ -10,9 +10,9 @@ const BloodRequestBanner = ({ selectedDate, setSelectedDate }) => {
 
     const today = new Date();
     const isPastDay = (day) => {
-      const isPast = day < today;
-      const isToday = day.toDateString() === today.toDateString();
-      return isPast && !isToday;
+        const isPast = day < today;
+        const isToday = day.toDateString() === today.toDateString();
+        return isPast && !isToday;
     };
 
     return (

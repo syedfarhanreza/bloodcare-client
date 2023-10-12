@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import 'react-datepicker/dist/react-datepicker.css';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import separator from '../../../assets/separator/separator.png';
+import DatePicker from 'react-datepicker';
+import { format } from 'date-fns';
+
 
 const AddCampaign = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(null);
     const imageHostKey = process.env.REACT_APP_imgbb_key;
+    const date = format(selectedDate, 'PP');
+
 
     const navigate = useNavigate();
 
     const handleAddCampaign = data => {
-       
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -28,7 +34,10 @@ const AddCampaign = () => {
                     const campaign = {
                         title: data.title,
                         details: data.details,
+                        number: data.number,
                         location: data.location,
+                        date: date,
+                        time: selectedTime.toLocaleTimeString(),
                         image: imgData.data.url,
                     }
                     fetch('http://localhost:5000/campaigns', {
@@ -69,11 +78,48 @@ const AddCampaign = () => {
                         {errors.details && <p className='text-red-500'>{errors.details.message}</p>}
                     </div>
                     <div className="form-control w-full">
+                        <label className="label"> <span className="label-text font-bold">Contact Number</span></label>
+                        <input type="text" {...register("number", {
+                            required: "Contact Number is Required"
+                        })} className="input input-bordered w-full" />
+                        {errors.number && <p className='text-red-500'>{errors.number.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
                         <label className="label"> <span className="label-text font-bold">Campaign Location</span></label>
                         <input type="text" {...register("location", {
                             required: "Campaign Location is Required"
                         })} className="input input-bordered w-full" />
-                        {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
+                        {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Select Date</span>
+                            </label>
+                            <DatePicker
+                                selected={selectedDate}
+                                onChange={(date) => setSelectedDate(date)}
+                                placeholderText="Select Date"
+                                className="input w-full input-bordered"
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-bold">Select Time</span>
+                            </label>
+                            <DatePicker
+                                required
+                                selected={selectedTime}
+                                onChange={date => setSelectedTime(date)}
+                                showTimeSelect
+                                showTimeSelectOnly
+                                placeholderText="Select Time"
+                                timeIntervals={15}
+                                timeCaption="Time"
+                                dateFormat="h:mm aa"
+                                className="input w-full input-bordered"
+                            />
+                        </div>
                     </div>
                     <div className="form-control w-full mb-3">
                         <label className="label"> <span className="label-text font-bold">Upload Image</span></label>
