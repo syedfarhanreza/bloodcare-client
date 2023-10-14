@@ -15,9 +15,9 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/aboutUs">About Us</Link></li>
         <li><Link to="/blogs">Blogs</Link></li>
-        <li><Link to="/donorList">Donor List</Link></li>
-        <li><Link to="/campaign">Campaign</Link></li>
-        <li><Link to="/hospitalList">Hospital List</Link></li>
+        <li><Link to="/donors">Donor</Link></li>
+        <li><Link to="/campaigns">Campaigns</Link></li>
+        <li><Link to="/hospitals">Hospitals</Link></li>
         <li><Link to="/bloodRequests">Blood Requests</Link></li>
         <li><Link to="/search">Search</Link></li>
     </React.Fragment>

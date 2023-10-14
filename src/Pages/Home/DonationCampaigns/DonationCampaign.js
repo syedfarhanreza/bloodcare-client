@@ -4,6 +4,7 @@ import campaign1 from '../../../assets/Campaigns/campaign1.jpg';
 import campaign2 from '../../../assets/Campaigns/campaign2.jpg';
 import campaign3 from '../../../assets/Campaigns/campaign3.jpg';
 import DonationCampaignInfo from './DonationCampaignInfo';
+import { Link } from 'react-router-dom';
 
 const DonationCampaign = () => {
     const campaignData = [
@@ -50,7 +51,7 @@ const DonationCampaign = () => {
                 }
             </div>
             <div className='mx-auto text-center'>
-                <button className="btn btn-outline btn-accent shadow-xl">Load All Campaign</button>
+                <Link to='/campaigns' className="btn btn-outline btn-accent shadow-xl">Load All Campaign</Link>
             </div>
         </div>
     );

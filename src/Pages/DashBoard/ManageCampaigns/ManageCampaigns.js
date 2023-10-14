@@ -55,7 +55,7 @@ const ManageCampaigns = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Blogs</h2>
+            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Campaigns</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {campaigns?.map((campaign) => (
@@ -112,7 +112,7 @@ const ManageCampaigns = () => {
             )}
             {selectedCampaign && <ManageCampaignModal
                 refetch={refetch}
-                selectedBlog={selectedCampaign}
+                selectedCampaign={selectedCampaign}
             ></ManageCampaignModal>}
         </div>
     );

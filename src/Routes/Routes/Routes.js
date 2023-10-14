@@ -16,6 +16,8 @@ import ManageBlogs from "../../Pages/DashBoard/ManageBlogs/ManageBlogs";
 import PostBlog from "../../Pages/DashBoard/PostBlog/PostBlog";
 import AddCampaign from "../../Pages/DashBoard/AddCampaign/AddCampaign";
 import ManageCampaigns from "../../Pages/DashBoard/ManageCampaigns/ManageCampaigns";
+import Blogs from "../../Pages/Blogs/Blogs";
+import Campaigns from "../../Pages/Campaigns/Campaigns";
 
 
 const router = createBrowserRouter([
@@ -42,7 +44,15 @@ const router = createBrowserRouter([
             {
                 path: '/aboutUs',
                 element: <AboutUs></AboutUs>
-            }
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
+            },
+            {
+                path: '/campaigns',
+                element: <Campaigns></Campaigns>
+            },
         ]
     },
     {
