@@ -13,8 +13,7 @@ const AddCampaign = () => {
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const imageHostKey = process.env.REACT_APP_imgbb_key;
-    const date = format(selectedDate, 'PP');
-
+    const date = selectedDate ? format(selectedDate, 'PP') : null;
 
     const navigate = useNavigate();
 
@@ -37,7 +36,7 @@ const AddCampaign = () => {
                         number: data.number,
                         location: data.location,
                         date: date,
-                        time: selectedTime.toLocaleTimeString(),
+                        time: selectedTime instanceof Date ? selectedTime.toLocaleTimeString() : null,
                         image: imgData.data.url,
                     }
                     fetch('http://localhost:5000/campaigns', {
@@ -58,7 +57,7 @@ const AddCampaign = () => {
             })
     }
     return (
-        <div className='h-[700px] w= flex justify-center items-center mb-7'>
+        <div className='h-[800px] w= flex justify-center items-center my-2  '>
             <div className='w-3/5  bg-slate-300 p-7 shadow-xl rounded-xl '>
                 <h2 className="text-3xl text-center font-bold ">Add Campaign</h2>
                 <img className='m-auto' src={separator} alt="separator" />
