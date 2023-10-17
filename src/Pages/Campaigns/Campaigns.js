@@ -1,19 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faClock, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faClock, faMapMarker, faPhone } from '@fortawesome/free-solid-svg-icons';
 import separator from '../../assets/separator/separator.png';
 import { useQuery } from 'react-query';
 
 const Campaigns = () => {
 
-    const { data: campaigns} = useQuery({
+    const { data: campaigns } = useQuery({
         queryKey: ['campaigns'],
         queryFn: () => fetch('http://localhost:5000/campaigns')
-                    .then(res => res.json())
+            .then(res => res.json())
     });
     return (
         <div className="container mx-auto p-4">
-            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Campaigns</h2>
+            <h2 className='text-3xl mt-3 text-center font-bold text-red-600'>Campaigns</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {campaigns?.map((campaign) => (
@@ -24,9 +24,15 @@ const Campaigns = () => {
                             <div className='h-[300px] mb-3'>
                                 <p className="text-gray-600">{campaign.details}</p>
                             </div>
+                            <div className="flex items-center my-2">
+                                <FontAwesomeIcon icon={faPhone} className="text-gray-600 mr-2 text-xl" />
+                                <a className='text-blue-600 hover:text-blue-400' href={`tel:${campaign.number}`}>{campaign.number}</a>
+                            </div>
                             <div className="flex items-center">
                                 <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mr-2 text-xl" />
-                                <span className="text-gray-600">{campaign.location}</span>
+                                <a  className='text-blue-600 hover:text-blue-400' href={`https://maps.google.com/?q=${campaign.location}`} target="_blank" rel="noopener noreferrer">
+                                    {campaign.location}
+                                </a>
                             </div>
                             <div className='flex justify-between items-center mt-2'>
                                 <div className="flex items-center">

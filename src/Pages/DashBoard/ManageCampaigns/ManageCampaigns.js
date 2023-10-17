@@ -57,13 +57,13 @@ const ManageCampaigns = () => {
         <div className="container mx-auto p-4">
             <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Campaigns</h2>
             <img className='m-auto' src={separator} alt="separator" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10">
                 {campaigns?.map((campaign) => (
                     <div key={campaign._id} className="bg-white rounded-lg shadow-lg">
                         <img src={campaign.image} alt={campaign.name} className="w-full h-48 object-cover rounded-t-lg" />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-1">{campaign.title}</h3>
-                            <div className='h-[150px]'>
+                            <div className='h-[150px] mb-2'>
                                 <p className="text-gray-600 line-clamp-6">{campaign.details}</p>
                             </div>
                             <div className="flex items-center">

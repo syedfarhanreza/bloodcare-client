@@ -1,20 +1,19 @@
 import React from 'react';
 import separator from '../../../assets/separator/separator.png';
-import campaign1 from '../../../assets/Campaigns/campaign1.jpg';
-import campaign2 from '../../../assets/Campaigns/campaign2.jpg';
-import campaign3 from '../../../assets/Campaigns/campaign3.jpg';
 import DonationCampaignInfo from './DonationCampaignInfo';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 const DonationCampaign = () => {
 
-    const { data: campaigns} = useQuery({
+    const { data: campaigns } = useQuery({
         queryKey: ['campaigns'],
         queryFn: () => fetch('http://localhost:5000/campaigns')
-                    .then(res => res.json())
+            .then(res => res.json())
     });
-    
+
+    const displayedCampaigns = campaigns ? campaigns.slice(0, 3) : [];
+
     return (
         <div className='pb-20'>
             <div>
@@ -26,10 +25,9 @@ const DonationCampaign = () => {
             </div>
             <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-10 mb-10'>
                 {
-                    campaigns.map(campaign => <DonationCampaignInfo
-                        key={campaign.id}
-                        campaign={campaign}
-                    ></DonationCampaignInfo>)
+                    displayedCampaigns.map(campaign => (
+                        <DonationCampaignInfo key={campaign.id} campaign={campaign} />
+                    ))
                 }
             </div>
             <div className='mx-auto text-center'>
