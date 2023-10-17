@@ -18,17 +18,17 @@ const Campaigns = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {campaigns?.map((campaign) => (
                     <div key={campaign._id} className="bg-white rounded-lg shadow-lg">
-                        <img src={campaign.image} alt={campaign.name} className="w-full h-48 object-cover rounded-t-lg" />
+                        <img src={campaign.image} alt={campaign.name} className="w-full h-[300px] object-cover rounded-t-lg" />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-1">{campaign.title}</h3>
-                            <div className='h-[150px]'>
-                                <p className="text-gray-600 line-clamp-6">{campaign.details}</p>
+                            <div className='h-[300px] mb-3'>
+                                <p className="text-gray-600">{campaign.details}</p>
                             </div>
                             <div className="flex items-center">
-                                <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mr-2 pb-5 text-xl" />
+                                <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mr-2 text-xl" />
                                 <span className="text-gray-600">{campaign.location}</span>
                             </div>
-                            <div className='flex justify-between items-center mt-1'>
+                            <div className='flex justify-between items-center mt-2'>
                                 <div className="flex items-center">
                                     <FontAwesomeIcon icon={faCalendar} className="text-gray-600 mr-2" />
                                     <span className="text-gray-600">{campaign.date}</span>
