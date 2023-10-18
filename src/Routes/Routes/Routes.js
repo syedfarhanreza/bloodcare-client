@@ -18,6 +18,8 @@ import AddCampaign from "../../Pages/DashBoard/AddCampaign/AddCampaign";
 import ManageCampaigns from "../../Pages/DashBoard/ManageCampaigns/ManageCampaigns";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Campaigns from "../../Pages/Campaigns/Campaigns";
+import Donors from "../../Pages/Donors/Donors";
+import Hospitals from "../../Pages/Hospitals/Hospitals";
 
 
 const router = createBrowserRouter([
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
             {
                 path: '/campaigns',
                 element: <Campaigns></Campaigns>
+            },
+            {
+                path: '/donors',
+                element: <Donors></Donors>
+            },
+            {
+                path: '/hospitals',
+                element: <Hospitals></Hospitals>
             },
         ]
     },

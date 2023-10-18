@@ -12,16 +12,16 @@ const Campaigns = () => {
             .then(res => res.json())
     });
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 bg-gray-200">
             <h2 className='text-3xl mt-3 text-center font-bold text-red-600'>Campaigns</h2>
             <img className='m-auto' src={separator} alt="separator" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 w-3/4 mx-auto gap-10 mb-5">
                 {campaigns?.map((campaign) => (
                     <div key={campaign._id} className="bg-white rounded-lg shadow-lg">
                         <img src={campaign.image} alt={campaign.name} className="w-full h-[300px] object-cover rounded-t-lg" />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-1">{campaign.title}</h3>
-                            <div className='h-[300px] mb-3'>
+                            <div className='h-auto mb-3'>
                                 <p className="text-gray-600">{campaign.details}</p>
                             </div>
                             <div className="flex items-center my-2">
