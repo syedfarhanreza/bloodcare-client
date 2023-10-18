@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImage from '../../../assets/propic/propic.png'
+import defaultImage from '../../../assets/propic/propic.png';
 const AllUsersModal = ({ selectedUser }) => {
     const { name, number, nid, dob, gender, blood, address, district, country, email, role, image } = selectedUser;
 
