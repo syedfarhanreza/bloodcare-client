@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import separator from '../../assets/separator/separator.png';
 import defaultImage from '../../assets/propic/propic.png';

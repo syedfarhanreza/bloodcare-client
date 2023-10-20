@@ -13,8 +13,8 @@ const DonationCampaignInfo = ({ campaign }) => {
             <figure><img className='h-[300px] w-full' src={image} alt={title} /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
-                <div>
-                    <p className='mb-2 text-gray-600 line-clamp-3'>{details}</p>
+                <div className='h-[100px]'>
+                    <p className='mb-2 text-gray-600 line-clamp-3 '>{details}</p>
                 </div>
                 <div className="flex items-center my-2">
                     <FontAwesomeIcon icon={faPhone} className="text-gray-600 mr-2 text-xl" />
