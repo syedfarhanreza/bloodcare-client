@@ -14,7 +14,7 @@ const Hospitals = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Hospitals</h2>
+            <h2 className='text-3xl mt-3 text-center font-bold text-red-600'>Hospitals</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {hospitals?.map((hospital) => (
@@ -22,7 +22,7 @@ const Hospitals = () => {
                         <img src={hospital.image} alt={hospital.name} className="w-full h-[300px] object-cover rounded-t-lg" />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold text-gray-800 mb-1">{hospital.name}</h3>
-                            <div className='h-[200px]'>
+                            <div className='lg:h-[200px] md:h-auto sm:h-auto'>
                                 <p className="text-gray-600">{hospital.details}</p>
                             </div>
                             <div className="flex items-center my-2">
