@@ -60,6 +60,13 @@ const PostBlog = () => {
                         })} className="input input-bordered w-full" />
                         {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                     </div>
+                    <div className="form-control w-full">
+                        <label className="label"> <span className="label-text font-bold">Category</span></label>
+                        <input type="text" {...register("category", {
+                            required: "Blog Title is Required"
+                        })} className="input input-bordered w-full" />
+                        {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                    </div>
                     <div className="form-control w-full ">
                         <label className="label"> <span className="label-text font-bold">Blog Details</span></label>
                         <textarea type="text" {...register("details", {
