@@ -21,6 +21,8 @@ import Campaigns from "../../Pages/Campaigns/Campaigns";
 import Donors from "../../Pages/Donors/Donors";
 import Hospitals from "../../Pages/Hospitals/Hospitals";
 import AboutBlood from "../../Pages/AboutBlood/AboutBlood/AboutBlood";
+import BloodDonation from "../../Pages/AboutBlood/BloodDonation/BloodDonation";
+import DonateBlood from "../../Pages/AboutBlood/DonateBlood/DonateBlood";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
             {
                 path: '/what-is-blood',
                 element: <AboutBlood></AboutBlood>
+            }, 
+            {
+                path: '/what-is-blood-donation',
+                element: <BloodDonation></BloodDonation>
+            }, 
+            {
+                path: '/who-can-donate-blood',
+                element: <DonateBlood></DonateBlood>
             }, 
         ]
     },
