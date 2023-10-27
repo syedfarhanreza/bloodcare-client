@@ -16,17 +16,21 @@ const Footer = () => {
     <Link className="link link-hover text-white">Advertisement</Link>
   </div> 
   <div>
-    <span className="footer-title text-white">Company</span> 
-    <Link className="link link-hover text-white">About us</Link> 
-    <Link className="link link-hover text-white">Contact</Link> 
-    <Link className="link link-hover text-white">Jobs</Link> 
-    <Link className="link link-hover text-white">Press kit</Link>
+    <span className="footer-title text-white">Important Links</span> 
+    <Link to='/' className="link link-hover text-white">Home</Link> 
+    <Link to='/bloodRequests' className="link link-hover text-white">Add Blood Request</Link> 
+    <Link className="link link-hover text-white">Frequently Asked Questions (FAQs)</Link> 
+    <Link to='/aboutUs' className="link link-hover text-white">About Us</Link>
+    <Link to='/contactUs' className="link link-hover text-white">Contact Us</Link>
   </div> 
   <div>
-    <span className="footer-title text-white">Legal</span> 
-    <Link className="link link-hover text-white">Terms of use</Link> 
-    <Link className="link link-hover text-white">Privacy policy</Link> 
-    <Link className="link link-hover text-white">Cookie policy</Link>
+    <span className="footer-title text-white">About Blood</span> 
+    <Link to='/what-is-blood' className="link link-hover text-white">What is blood?</Link> 
+    <Link className="link link-hover text-white">What is blood donation?</Link> 
+    <Link className="link link-hover text-white">Search Blood Donors in Bangladesh</Link>
+    <Link className="link link-hover text-white">How often can I donate blood?</Link>
+    <Link className="link link-hover text-white">Different Blood Terms</Link>
+    <Link className="link link-hover text-white">Different Blood Groups</Link>
   </div>
 </footer>
     );

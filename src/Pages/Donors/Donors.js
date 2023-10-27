@@ -38,14 +38,22 @@ const Donors = () => {
                         <label className="font-bold pl-1 mb-1" htmlFor="bloodGroup">
                             Blood Group
                         </label>
-                        <input
-                            type="text"
+                        <select
                             id="bloodGroup"
-                            placeholder="Blood Group"
                             value={bloodGroup}
                             onChange={(e) => setBloodGroup(e.target.value)}
                             className="rounded-md p-2 border border-white focus:outline-none"
-                        />
+                        >
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
                     </div>
                     <div className="relative flex flex-col mb-2">
                         <label className="font-bold pl-1 mb-1" htmlFor="district">
@@ -64,14 +72,17 @@ const Donors = () => {
                         <label className="font-bold pl-1 mb-1" htmlFor="gender">
                             Gender
                         </label>
-                        <input
-                            type="text"
+                        <select
                             id="gender"
-                            placeholder="Gender"
                             value={gender}
                             onChange={(e) => setGender(e.target.value)}
                             className="rounded-md p-2 border border-white focus:outline-none"
-                        />
+                        >
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div className="pt-2 md:pt-0">
                         <button className="btn btn-outline bg-red-600 hover:bg-pink-600 text-white shadow-xl border-none mt-6" onClick={handleSearch}>

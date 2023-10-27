@@ -20,7 +20,7 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import Campaigns from "../../Pages/Campaigns/Campaigns";
 import Donors from "../../Pages/Donors/Donors";
 import Hospitals from "../../Pages/Hospitals/Hospitals";
-
+import AboutBlood from "../../Pages/AboutBlood/AboutBlood/AboutBlood";
 
 const router = createBrowserRouter([
     {
@@ -62,7 +62,11 @@ const router = createBrowserRouter([
             {
                 path: '/hospitals',
                 element: <Hospitals></Hospitals>
-            },
+            }, 
+            {
+                path: '/what-is-blood',
+                element: <AboutBlood></AboutBlood>
+            }, 
         ]
     },
     {
