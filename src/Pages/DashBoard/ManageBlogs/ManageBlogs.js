@@ -3,8 +3,6 @@ import ManageBlogsModal from './ManageBlogsModal';
 import { useQuery } from 'react-query';
 import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import separator from '../../../assets/separator/separator.png';
 
@@ -58,34 +56,58 @@ const ManageBlogs = () => {
         <div className="container mx-auto p-4">
             <h2 className='text-3xl my-3 text-center font-bold text-red-600'>Manage Blogs</h2>
             <img className='m-auto' src={separator} alt="separator" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                {blogs?.map((blog) => (
-                    <div key={blog._id} className="bg-white rounded-lg shadow-lg">
-                        <img src={blog.image} alt={blog.name} className="w-full h-48 object-cover rounded-t-lg" />
-                        <div className="p-4">
-                            <h3 className="text-xl font-semibold text-gray-800 mb-1">{blog.title}</h3>
-                            <div className='h-[150px]'>
-                                <p className="text-gray-600 line-clamp-6">{blog.details}</p>
-                            </div>
-                            <div className="mt-4 flex justify-between items-center">
-                                <label
-                                    htmlFor="user-modal"
-                                    className="btn btn-outline btn-info btn-xs"
-                                    onClick={() => {
-                                        setSelectedBlog(blog);
-                                    }}
-                                >Details</label>
-                                <label
-                                    htmlFor="confirmation-modal"
-                                    onClick={() => setDeletingBlog(blog)}
-                                    className="btn btn-ghost btn-xs hover:btn-error"
-                                >
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Blog Title</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            blogs?.map((blog, i) => <tr key={blog._id}>
+                                <th>{i + 1}</th>
+                                <td>
+                                    <div className="flex items-center space-x-3">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
+                                                <img src={blog.image} alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="font-bold">{blog.title}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <th>
+                                    <label
+                                        htmlFor="user-modal"
+                                        className="btn btn-info btn-outline  btn-xs"
+                                        onClick={() => {
+                                            setSelectedBlog(blog);
+                                        }}
+                                    >Details</label>
+                                </th>
+                                <th>
+                                    <label
+                                        className="btn btn-outline btn-primary btn-xs font-bold"
+
+                                    >Edit</label>
+                                </th>
+                                <th>
+                                    <label onClick={() => setDeletingBlog(blog)} className="btn btn-outline btn-error btn-xs font-bold" htmlFor="confirmation-modal">
+                                        Delete
+                                    </label>
+                                </th>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
             </div>
             {deletingBlog && (
                 <ConfirmationModal

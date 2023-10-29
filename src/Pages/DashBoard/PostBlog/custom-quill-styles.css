@@ -1,0 +1,17 @@
+/* custom-quill-styles.css */
+.ql-editor {
+    background-color: white;
+    min-height: 200px; 
+    resize: vertical; 
+    overflow-y: auto;   
+}
+.react-quill-no-resize .ql-editor {
+    background-color: white;
+    min-height: 200px; 
+    resize: vertical; 
+    overflow-y: auto; 
+    resize: none;
+}
+.react-quill-no-border .ql-container {
+    border: none;
+}
