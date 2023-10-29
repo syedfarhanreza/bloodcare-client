@@ -30,8 +30,8 @@ const Footer = () => {
     <Link to='/what-is-blood-donation' className="link link-hover text-white">What is blood donation?</Link> 
     <Link to='/who-can-donate-blood' className="link link-hover text-white">Who can donate blood?</Link>
     <Link to='/how-often-can-i-donate-blood' className="link link-hover text-white">How often can I donate blood?</Link>
-    <Link className="link link-hover text-white">Different Blood Terms</Link>
-    <Link className="link link-hover text-white">Different Blood Groups</Link>
+    <Link to='/different-blood-terms' className="link link-hover text-white">Different Blood Terms</Link>
+    <Link to='/different-blood-groups' className="link link-hover text-white">Different Blood Groups</Link>
   </div>
 </footer>
     );

@@ -24,6 +24,8 @@ import AboutBlood from "../../Pages/AboutBlood/AboutBlood/AboutBlood";
 import BloodDonation from "../../Pages/AboutBlood/BloodDonation/BloodDonation";
 import DonateBlood from "../../Pages/AboutBlood/DonateBlood/DonateBlood";
 import HowDonateBlood from "../../Pages/AboutBlood/HowDonateBlood/HowDonateBlood";
+import BloodTerms from "../../Pages/AboutBlood/BloodTerms/BloodTerms";
+import GroupsOfBlood from "../../Pages/AboutBlood/GroupsOfBlood/GroupsOfBlood";
 
 const router = createBrowserRouter([
     {
@@ -81,6 +83,14 @@ const router = createBrowserRouter([
             {
                 path: '/how-often-can-i-donate-blood',
                 element: <HowDonateBlood></HowDonateBlood>
+            }, 
+            {
+                path: '/different-blood-terms',
+                element: <BloodTerms></BloodTerms>
+            }, 
+            {
+                path: '/different-blood-groups',
+                element: <GroupsOfBlood></GroupsOfBlood>
             }, 
         ]
     },
