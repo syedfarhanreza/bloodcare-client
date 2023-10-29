@@ -23,6 +23,7 @@ import Hospitals from "../../Pages/Hospitals/Hospitals";
 import AboutBlood from "../../Pages/AboutBlood/AboutBlood/AboutBlood";
 import BloodDonation from "../../Pages/AboutBlood/BloodDonation/BloodDonation";
 import DonateBlood from "../../Pages/AboutBlood/DonateBlood/DonateBlood";
+import HowDonateBlood from "../../Pages/AboutBlood/HowDonateBlood/HowDonateBlood";
 
 const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
             {
                 path: '/who-can-donate-blood',
                 element: <DonateBlood></DonateBlood>
+            }, 
+            {
+                path: '/how-often-can-i-donate-blood',
+                element: <HowDonateBlood></HowDonateBlood>
             }, 
         ]
     },

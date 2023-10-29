@@ -2,7 +2,7 @@ import React from 'react';
 
 const DonateBlood = () => {
     return (
-        <div className='w-4/5 h-auto mx-auto mt-10 mb-56'>
+        <div className='w-4/5 h-full mx-auto mt-10 mb-56'>
             <h1 className='text-4xl font-bold'>Who can donate blood?</h1>
             <div className='text-lg my-20'>
                 <p>
