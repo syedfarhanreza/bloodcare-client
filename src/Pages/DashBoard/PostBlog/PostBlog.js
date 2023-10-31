@@ -6,12 +6,26 @@ import './custom-quill-styles.css';
 import separator from '../../../assets/separator/separator.png';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const PostBlog = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [blogContent, setBlogContent] = useState('');
     const imageHostKey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
+
+    const quillModules = {
+        toolbar: {
+            container: [
+                [{ 'font': [] }, { 'size': [] }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                ['link'],
+                ['align', 'blockquote'],
+            ],
+        },
+    };
 
     const handlePostBlog = (data) => {
         const image = data.image[0];
@@ -25,11 +39,16 @@ const PostBlog = () => {
             .then((res) => res.json())
             .then((imgData) => {
                 if (imgData.success) {
-                    console.log(imgData.data.url);
+                    const currentDate = new Date();
+                    const formattedDate = format(currentDate, 'yyyy-MM-dd HH:mm:ss');
+                    // console.log(imgData.data.url);
                     const blog = {
                         title: data.title,
-                        details: blogContent, // Use blogContent instead of data.details
+                        category: data.category,
+                        author: data.author,
+                        details: blogContent,
                         image: imgData.data.url,
+                        dateTime: formattedDate,
                     };
                     fetch('http://localhost:5000/blogs', {
                         method: 'POST',
@@ -42,7 +61,7 @@ const PostBlog = () => {
                         .then((res) => res.json())
                         .then((result) => {
                             console.log(result);
-                            toast.success(`${data.name} is added successfully`);
+                            toast.success(`${data.title} is added successfully`);
                             navigate('/dashboard/manageBlogs');
                         });
                 }
@@ -64,14 +83,25 @@ const PostBlog = () => {
                         })} className="input input-bordered w-full" />
                         {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                     </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text font-bold">Category</span>
-                        </label>
-                        <input type="text" {...register("category", {
-                            required: "Category is Required"
-                        })} className="input input-bordered w-full" />
-                        {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                    <div className='flex justify-between gap-4'>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Category</span>
+                            </label>
+                            <input type="text" {...register("category", {
+                                required: "Category is Required"
+                            })} className="input input-bordered w-full" />
+                            {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Author</span>
+                            </label>
+                            <input type="text" {...register("author", {
+                                required: "Author is Required"
+                            })} className="input input-bordered w-full" />
+                            {errors.author && <p className='text-red-500'>{errors.author.message}</p>}
+                        </div>
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
@@ -80,13 +110,7 @@ const PostBlog = () => {
                         <Quill
                             value={blogContent}
                             onChange={setBlogContent}
-                            modulces={{
-                                toolbar: [
-                                    ['bold', 'italic', 'underline'],
-                                    [{ list: 'ordered' }, { list: 'bullet' }],
-                                    ['link'],
-                                ],
-                            }}
+                            modules={quillModules}
                         />
                         {errors.details && <p className="text-red-500">{errors.details.message}</p>}
                     </div>
