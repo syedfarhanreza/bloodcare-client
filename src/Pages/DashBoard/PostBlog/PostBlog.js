@@ -40,7 +40,7 @@ const PostBlog = () => {
             .then((imgData) => {
                 if (imgData.success) {
                     const currentDate = new Date();
-                    const formattedDate = format(currentDate, 'yyyy-MM-dd HH:mm:ss');
+                    const formattedDate = format(currentDate, 'dd-MMM-yy hh:mm a');
                     // console.log(imgData.data.url);
                     const blog = {
                         title: data.title,

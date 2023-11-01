@@ -43,7 +43,7 @@ const ManageBlogs = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();
-                    toast.success(`Blog: ${blog.name} deleted successfully`)
+                    toast.success(`Blog: ${blog.title} deleted successfully`)
                 }
             })
     }
@@ -51,6 +51,10 @@ const ManageBlogs = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+    if (blogs) {
+        blogs.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
+      }
 
     return (
         <div className="container mx-auto p-4">

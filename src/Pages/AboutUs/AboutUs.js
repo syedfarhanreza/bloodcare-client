@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUs = () => {
     return (
         <div className="m-20">
-            <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-8 py-12 rounded-lg">
+            <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-8 py-12 rounded-lg shadow-xl shadow-pink-500/50">
                 <h3 className="text-4xl font-bold mb-4">Welcome to BloodCare!</h3>
                 <p className="text-lg">Discover the life-saving world of blood donation.</p>
             </div>
