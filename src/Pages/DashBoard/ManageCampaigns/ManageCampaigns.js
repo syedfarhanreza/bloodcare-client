@@ -1,4 +1,4 @@
-import { faCalendar, faClock, faMapMarker, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faClock, faMapMarker} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import separator from '../../../assets/separator/separator.png';
@@ -66,8 +66,8 @@ const ManageCampaigns = () => {
                             <div className='h-[150px] mb-2'>
                                 <p className="text-gray-600 line-clamp-6">{campaign.details}</p>
                             </div>
-                            <div className="flex items-center">
-                                <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mr-2 pb-5 text-xl" />
+                            <div className="flex items-center pb-2">
+                                <FontAwesomeIcon icon={faMapMarker} className="text-gray-600 mr-3 pb-2 text-xl" />
                                 <span className="text-gray-600">{campaign.location}</span>
                             </div>
                             <div className='flex justify-between items-center mt-1'>
@@ -91,9 +91,9 @@ const ManageCampaigns = () => {
                                 <label
                                     htmlFor="confirmation-modal"
                                     onClick={() => setDeletingCampaign(campaign)}
-                                    className="btn btn-ghost btn-xs hover:btn-error"
+                                    className="btn btn-outline btn-error btn-xs hover:btn-error"
                                 >
-                                    <FontAwesomeIcon icon={faTrash} />
+                                    Delete
                                 </label>
                             </div>
                         </div>

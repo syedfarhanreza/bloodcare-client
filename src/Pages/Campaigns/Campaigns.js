@@ -12,7 +12,7 @@ const Campaigns = () => {
             .then(res => res.json())
     });
     return (
-        <div className="container mx-auto p-4 bg-gray-200">
+        <div className="container mx-auto p-4">
             <h2 className='text-3xl mt-3 text-center font-bold text-red-600'>Campaigns</h2>
             <img className='m-auto' src={separator} alt="separator" />
             <div className="grid grid-cols-1 w-3/4 mx-auto gap-10 mb-5">

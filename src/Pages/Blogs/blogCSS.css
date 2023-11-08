@@ -1,0 +1,14 @@
+
+.blog-details {
+    display: none;
+}
+
+.blog-details-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* Number of lines to display before truncating */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 5.3em; /* Adjust this value to control the number of lines */
+    white-space: nowrap; /* This allows breaks within words */
+    text-overflow: ellipsis;
+  }
