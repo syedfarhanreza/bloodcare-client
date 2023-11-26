@@ -30,8 +30,8 @@ const Blogs = () => {
     };
 
     return (
-        <div className='flex flex-col sm:flex-row'>
-            <div className="w-1/6 bg-gray-300 text-center ">
+        <div className='flex flex-col sm:flex-row sm:flex-wrap'>
+            <div className="lg:w-1/6 sm:w-full bg-gray-300 text-center ">
                 <div className='mx-5'>
                     <h1 className='text-xl font-bold my-2 '>Categories</h1>
                     <div>

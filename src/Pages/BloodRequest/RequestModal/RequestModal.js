@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
 import DatePicker from 'react-datepicker';
+import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) => {
@@ -11,6 +13,19 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) 
     const { user } = useContext(AuthContext);
 
     const [selectedTime, setSelectedTime] = useState(null);
+
+    const {data: hospitalNames, isLoading} = useQuery({
+        queryKey: ['name'],
+        queryFn: async() => {
+          const res = fetch('http://localhost:5000/hospitalName');
+          const data = (await res).json();
+          return data;
+        }
+    })
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     const handleRequest = event => {
         event.preventDefault();
@@ -73,7 +88,17 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) 
                         <input name="applicantName" type="text" defaultValue={user?.displayName} required placeholder="Your Name" disabled className="input w-full input-bordered" />
                         <input name="email" type="email" defaultValue={user?.email} required placeholder="Email Address" disabled className="input w-full input-bordered" />
                         <input name="phone" type="text" required placeholder="Phone Number" className="input w-full input-bordered" />
-                        <input name="hospital" type="text" required placeholder="Select Hospital" className="input w-full input-bordered" />
+                        <div>
+                            <select name="hospital" type="text" required className="select select-bordered w-full ">
+                                <option disabled selected>Select Hospital</option>
+                                {
+                                    hospitalNames.map(hospitalName => <option
+                                        key={hospitalName._id}
+                                        value={hospitalName.name}
+                                    >{hospitalName.name}</option> )
+                                }
+                            </select>
+                        </div>
                         <input name="message" type="text" required placeholder="Your Message" className="input w-full input-bordered" />
                         <br />
                         <input className='btn btn-accent w-full' type="submit" value="Submit" />

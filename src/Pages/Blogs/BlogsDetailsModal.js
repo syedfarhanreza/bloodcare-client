@@ -2,7 +2,6 @@ import React from 'react';
 import BlogContent from '../DashBoard/ManageBlogs/BlogContent';
 
 const BlogsDetailsModal = ({ selectedBlog }) => {
-
     const { title, details, image, category, author, dateTime } = selectedBlog;
 
     return (
