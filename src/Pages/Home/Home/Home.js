@@ -4,6 +4,7 @@ import BannerSlider from '../BannerSlider/BannerSlider';
 import DonationProcess from '../DonationProcess/DonationProcess';
 import BecomeDonor from '../BecomeDonor/BecomeDonor';
 import DonationCampaign from '../DonationCampaigns/DonationCampaign';
+import ContactUs from '../../ContactUs/ContactUs';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
            <DonationProcess></DonationProcess>
            <BecomeDonor></BecomeDonor>
            <DonationCampaign></DonationCampaign>
+           <ContactUs></ContactUs>
         </div>
     );
 };
