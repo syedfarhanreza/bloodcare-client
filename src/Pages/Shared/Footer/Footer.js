@@ -21,8 +21,8 @@ const Footer = () => {
     <Link to='/bloodRequests' className="link link-hover text-white">Add Blood Request</Link>
     <Link to='/donors' className="link link-hover text-white">Search Blood Donors in Bangladesh</Link> 
     <Link className="link link-hover text-white">Frequently Asked Questions (FAQs)</Link> 
-    <Link to='/aboutUs' className="link link-hover text-white">About Us</Link>
-    <Link to='/contactUs' className="link link-hover text-white">Contact Us</Link>
+    <Link to='/about-us' className="link link-hover text-white">About Us</Link>
+    <Link to='/contact-us' className="link link-hover text-white">Contact Us</Link>
   </div> 
   <div>
     <span className="footer-title text-white">About Blood</span> 

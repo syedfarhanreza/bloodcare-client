@@ -26,6 +26,7 @@ import DonateBlood from "../../Pages/AboutBlood/DonateBlood/DonateBlood";
 import HowDonateBlood from "../../Pages/AboutBlood/HowDonateBlood/HowDonateBlood";
 import BloodTerms from "../../Pages/AboutBlood/BloodTerms/BloodTerms";
 import GroupsOfBlood from "../../Pages/AboutBlood/GroupsOfBlood/GroupsOfBlood";
+import ContactUs from "../../Pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
                 element: <BloodRequest></BloodRequest>
             },
             {
-                path: '/aboutUs',
+                path: '/about-us',
                 element: <AboutUs></AboutUs>
             },
             {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
             {
                 path: '/different-blood-groups',
                 element: <GroupsOfBlood></GroupsOfBlood>
+            }, 
+            {
+                path: '/contact-us',
+                element: <ContactUs></ContactUs>
             }, 
         ]
     },
