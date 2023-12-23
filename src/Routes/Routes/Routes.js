@@ -7,7 +7,6 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BloodRequest from "../../Pages/BloodRequest/BloodRequest/BloodRequest";
 import AboutUs from "../../Pages/AboutUs/AboutUs";
 import DashboardLayout from "../../Layout/DashboardLayout";
-import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddHospital from "../../Pages/DashBoard/AddHospital/AddHospital";
@@ -27,6 +26,8 @@ import HowDonateBlood from "../../Pages/AboutBlood/HowDonateBlood/HowDonateBlood
 import BloodTerms from "../../Pages/AboutBlood/BloodTerms/BloodTerms";
 import GroupsOfBlood from "../../Pages/AboutBlood/GroupsOfBlood/GroupsOfBlood";
 import ContactUs from "../../Pages/ContactUs/ContactUs";
+import MyBloodRequest from "../../Pages/DashBoard/MyBloodRequest/MyBloodRequest";
+import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
 
 const router = createBrowserRouter([
     {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
+                element: <MyBloodRequest></MyBloodRequest>
+            },
+            {
+                path: '/dashboard/requestType',
                 element: <RequestForBlood></RequestForBlood>
             },
             {

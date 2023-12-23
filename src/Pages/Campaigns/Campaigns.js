@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faClock, faMapMarker, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faClock, faMapMarker, faPhone} from '@fortawesome/free-solid-svg-icons';
 import separator from '../../assets/separator/separator.png';
 import { useQuery } from 'react-query';
 
