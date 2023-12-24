@@ -29,6 +29,7 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                const uid = user.uid;
                 console.log(user);
                 toast('User Created Successfully.');
                 const image = data.image[0];
@@ -44,6 +45,7 @@ const Register = () => {
                         if (imgData.success) {
                             console.log(imgData.data.url);
                             const userInfo = {
+                                uid,
                                 displayName: data.name,
                                 phoneNumber: data.number,
                                 nidNumber: data.nid,
@@ -59,7 +61,7 @@ const Register = () => {
                             }
                             updateUser(userInfo)
                                 .then(() => {
-                                    saveUser(data.name, data.number, data.nid, data.dob, data.gender, data.blood, data.address, data.district, data.country, data.email, data.role, imgData.data.url)
+                                    saveUser(uid,data.name, data.number, data.nid, data.dob, data.gender, data.blood, data.address, data.district, data.country, data.email, data.role, imgData.data.url)
                                 })
                                 .catch(err => console.log(err));
                         }
@@ -73,8 +75,8 @@ const Register = () => {
             });
     }
 
-    const saveUser = (name, number, nid, dob, gender, blood, address, district, country, email, role, image) => {
-        const user = { name, number, nid, dob, gender, blood, address, district, country, email, role, image };
+    const saveUser = (uid,name, number, nid, dob, gender, blood, address, district, country, email, role, image) => {
+        const user = {uid, name, number, nid, dob, gender, blood, address, district, country, email, role, image };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

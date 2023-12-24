@@ -14,7 +14,7 @@ const MyBloodRequest = () => {
 
     const url = `http://localhost:5000/requests?email=${user?.email}`;
 
-    const { data: requests, isError, isLoading ,refetch} = useQuery({
+    const { data: requests, isError, isLoading, refetch } = useQuery({
         queryKey: ['requests', user?.email],
         queryFn: async () => {
             try {
@@ -102,7 +102,8 @@ const MyBloodRequest = () => {
                             </tr>)
                         }
                     </tbody>
-                </table>            </div>
+                </table>
+            </div>
             {deletingRequest && (
                 <ConfirmationModal
                     title={`Are you sure you want to delete?`}

@@ -21,7 +21,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-52 h-full bg-base-200 text-base-content">
 
                         <li><Link to='/dashboard'>My Blood Requests</Link></li>
-                        <li><Link to='/dashboard/requestType'>Requests For Blood</Link></li>
+                        <li><Link to='/dashboard/request-for-blood'>Requests For Blood</Link></li>
                         {
                             isAdmin && <>
                                     <li><Link to='/dashboard/allusers'>All Users </Link></li>

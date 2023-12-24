@@ -28,6 +28,7 @@ import GroupsOfBlood from "../../Pages/AboutBlood/GroupsOfBlood/GroupsOfBlood";
 import ContactUs from "../../Pages/ContactUs/ContactUs";
 import MyBloodRequest from "../../Pages/DashBoard/MyBloodRequest/MyBloodRequest";
 import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
+import MyProfile from "../../Pages/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: '/bloodRequests',
                 element: <BloodRequest></BloodRequest>
+            },
+            {
+                path: '/my-profile',
+                element: <MyProfile></MyProfile>
             },
             {
                 path: '/about-us',
@@ -109,7 +114,7 @@ const router = createBrowserRouter([
                 element: <MyBloodRequest></MyBloodRequest>
             },
             {
-                path: '/dashboard/requestType',
+                path: '/dashboard/request-for-blood',
                 element: <RequestForBlood></RequestForBlood>
             },
             {

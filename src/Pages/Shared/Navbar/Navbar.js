@@ -24,6 +24,7 @@ const Navbar = () => {
         {
             user?.uid ?
                 <>
+                    <li><Link to="/my-profile">My Profile</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link onClick={handleLogOut} className="btn btn-outline btn-warning" >Logout</Link></li>
                 </>
