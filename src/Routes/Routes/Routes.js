@@ -49,11 +49,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/bloodRequests',
-                element: <BloodRequest></BloodRequest>
+                element: <PrivateRoute><BloodRequest></BloodRequest></PrivateRoute>
             },
             {
                 path: '/my-profile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
             },
             {
                 path: '/about-us',
@@ -65,15 +65,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/campaigns',
-                element: <Campaigns></Campaigns>
+                element: <PrivateRoute><Campaigns></Campaigns></PrivateRoute>
             },
             {
                 path: '/donors',
-                element: <Donors></Donors>
+                element: <PrivateRoute><Donors></Donors></PrivateRoute>
             },
             {
                 path: '/hospitals',
-                element: <Hospitals></Hospitals>
+                element: <PrivateRoute><Hospitals></Hospitals></PrivateRoute>
             }, 
             {
                 path: '/what-is-blood',

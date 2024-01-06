@@ -72,14 +72,13 @@ const MyBloodRequest = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='text-red-600 font-bold'>Date</th>
-                            <th className='text-red-600 font-bold'>Time</th>
+                            <th className='text-red-600 font-bold'>Date & Time</th>
                             <th>Name</th>
                             <th className='text-red-600 font-bold'>Blood Group</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
+                            <th>Contact</th>
                             <th>Hospital</th>
                             <th>Message</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,14 +86,19 @@ const MyBloodRequest = () => {
                         {sortedRequests &&
                             sortedRequests.map((requests, i) => <tr key={requests._id}>
                                 <th>{i + 1}</th>
-                                <td className='text-red-600 font-bold'>{requests.requestedDate}</td>
-                                <td className='text-red-600 font-bold'>{requests.requestedTime}</td>
+                                <td className='text-red-600 font-bold'>
+                                    <p>{requests.requestedDate}</p>
+                                    <span className='text-md'>{requests.requestedTime}</span>
+                                </td>
                                 <td >{requests.applicant}</td>
-                                <td className='text-red-600 font-bold'>{requests.bloodRequest}</td>
-                                <td>{requests.email}</td>
-                                <td>{requests.phone}</td>
+                                <td className='text-red-600 font-bold capitalize'>{requests.bloodRequest}</td>
+                                <td>
+                                    <p>{requests.email}</p>
+                                    <p>{requests.phone}</p>
+                                </td>
                                 <td>{requests.hospital}</td>
                                 <td>{requests.message}</td>
+                                <td>{requests.status}</td>
                                 <td>
                                     <label onClick={() => setDeletingRequest(requests)} className="btn btn-outline btn-error btn-xs font-bold" htmlFor="confirmation-modal">
                                         Delete

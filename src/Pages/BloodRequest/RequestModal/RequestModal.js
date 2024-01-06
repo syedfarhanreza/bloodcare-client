@@ -35,6 +35,7 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) 
         const phone = form.phone.value;
         const hospital = form.hospital.value;
         const message = form.message.value;
+        const status = 'pending';
 
         const booking = {
             requestedDate: date,
@@ -45,6 +46,7 @@ const RequestModal = ({ bloodRequest, setBloodRequest, selectedDate, refetch }) 
             requestedTime: selectedTime.toLocaleTimeString(),
             hospital,
             message,
+            status,
         }
 
         fetch('http://localhost:5000/requests', {
