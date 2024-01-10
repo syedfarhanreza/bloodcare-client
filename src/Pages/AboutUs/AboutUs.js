@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
     return (
@@ -53,7 +54,7 @@ const AboutUs = () => {
                 <p className="text-lg leading-relaxed">
                     Become a part of our passionate community of blood donors and advocates. Together, we can make a lasting impact on countless lives. Join BloodCare today and let your selfless act of blood donation bring hope and healing to those in need.
                 </p>
-                <button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3 mt-6 font-bold transition duration-300">Get Involved</button>
+             <Link to='/register'><button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3 mt-6 font-bold transition duration-300">Get Involved</button></Link>
             </section>
 
 

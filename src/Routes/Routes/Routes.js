@@ -29,11 +29,13 @@ import ContactUs from "../../Pages/ContactUs/ContactUs";
 import MyBloodRequest from "../../Pages/DashBoard/MyBloodRequest/MyBloodRequest";
 import RequestForBlood from "../../Pages/DashBoard/RequestForBlood/RequestForBlood";
 import MyProfile from "../../Pages/MyProfile/MyProfile";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',

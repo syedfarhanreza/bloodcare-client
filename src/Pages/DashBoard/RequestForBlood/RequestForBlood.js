@@ -7,6 +7,15 @@ const RequestForBlood = () => {
 
     const { user } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
+    const [declinedRequests, setDeclinedRequests] = useState(() => {
+        try {
+            const storedData = localStorage.getItem('declinedRequests');
+            return storedData ? JSON.parse(storedData) : [];
+        } catch (error) {
+            console.error('Error retrieving declined requests from local storage:', error);
+            return [];
+        }
+    });
     
     useEffect(() => {
         const fetchUserData = async () => {
@@ -43,7 +52,19 @@ const RequestForBlood = () => {
         const timeB = new Date(`${b.requestedDate} ${b.requestedTime}`);
         return timeB - timeA;
     });
-   
+    const handleDecline = (requestId) => {
+        // Update state
+        setDeclinedRequests((prev) => [...prev, requestId]);
+    };
+    useEffect(() => {
+        try {
+            localStorage.setItem('declinedRequests', JSON.stringify(declinedRequests));
+        } catch (error) {
+            console.error('Error storing declined requests in local storage:', error);
+        }
+    }, [declinedRequests]);
+
+
 
     return (
         <div className="container mx-auto p-4">
@@ -64,7 +85,11 @@ const RequestForBlood = () => {
                         <tbody>
                             {
                                 sortedDonorRequests?.map((request) => {
-                                    if (request?.bloodRequest === userData?.blood && userData?.email !== request?.email) {
+                                    if ( 
+                                        request?.bloodRequest === userData?.blood &&
+                                        userData?.email !== request?.email &&
+                                        !declinedRequests.includes(request._id)
+                                        ) {
                                         return (
                                             <tr key={request._id}>
                                     <td className='text-red-600 font-bold'>
@@ -83,9 +108,13 @@ const RequestForBlood = () => {
                                         <label className="btn btn-outline btn-success btn-xs font-bold mr-1" htmlFor="confirmation-modal">
                                             Accept
                                         </label>
-                                        <label className="btn btn-outline btn-error btn-xs font-bold" htmlFor="confirmation-modal">
-                                            Decline
-                                        </label>
+                                        <label
+                                        className="btn btn-outline btn-error btn-xs font-bold"
+                                        htmlFor="confirmation-modal"
+                                        onClick={() => handleDecline(request._id)}
+                                    >
+                                        Decline
+                                    </label>
                                     </td>
                                 </tr>
                                         );
