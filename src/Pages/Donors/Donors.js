@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import separator from '../../assets/separator/separator.png';
 import defaultImage from '../../assets/propic/propic.png';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Donors = () => {
     const { data: users } = useQuery({
@@ -23,6 +25,16 @@ const Donors = () => {
                 return matchesBlood && matchesDistrict && matchesGender && user.role !== 'admin';
             });
         setSearchResults(filteredUsers || []);
+    };
+    const handleCall = (phoneNumber) => {
+        const telLink = `tel:${phoneNumber}`;
+        window.location.href = telLink;
+    };
+
+
+    const handleEmail = (email) => {
+        const mailtoLink = `mailto:${email}`;
+        window.open(mailtoLink, '_blank');
     };
 
     const totalDonors = users?.filter((user) => user.role === 'donor' || user.role === 'both').length;
@@ -200,6 +212,20 @@ const Donors = () => {
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div className="flex justify-center items-center mt-4">
+                                        <button
+                                            className="mr-4 bg-green-500 text-white p-2 rounded-full hover:bg-green-600"
+                                            onClick={() => handleCall(user.number)}
+                                        >
+                                            <FontAwesomeIcon icon={faPhone} />
+                                        </button>
+                                        <button
+                                            className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600"
+                                            onClick={() => handleEmail(user.email)}
+                                        >
+                                            <FontAwesomeIcon icon={faEnvelope} />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))

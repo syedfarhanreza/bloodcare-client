@@ -57,7 +57,7 @@ const Blogs = () => {
                         <div key={blog._id} className="bg-white rounded-lg shadow-lg hover:shadow-2xl">
                             <img src={blog.image} alt={blog.name} className="w-full h-[250px] object-cover rounded-t-lg" />
                             <div className="p-4">
-                                <h3 className="text-xl font-semibold text-gray-800 mb-1 pb-3">{blog.title}</h3>
+                                <h3 className="text-xl font-semibold text-gray-800 mb-1 pb-3 h-[100px]">{blog.title}</h3>
                                 <div className='flex justify-between bg-slate-200 px-3 mb-3'>
                                     <span>Category: <span className='capitalize font-bold'> {blog.category}</span></span>
                                     <span>Author: <span className='capitalize italic font-bold'> {blog.author}</span></span>
