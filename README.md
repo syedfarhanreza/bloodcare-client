@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# BloodCare: A Web-based Solution for Effective Blood Management and Donation Campaigns
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Developed By : Syed Farhan Reza
 
 ## Available Scripts
 
