@@ -2,7 +2,9 @@
 
 Developed By : Syed Farhan Reza
 
-## Available Scripts
+## Screenshots
+### Homepage
+![Uploading Home Page.png…]()
 
 In the project directory, you can run:
 
