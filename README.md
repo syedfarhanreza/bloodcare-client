@@ -66,6 +66,6 @@ Developed By: [Syed Farhan Reza](https://github.com/syedfarhanreza)
 - Firebase
 - JWT
 - React Query
-- 
+
 
 
