@@ -1,72 +1,71 @@
 # BloodCare: A Web-based Solution for Effective Blood Management and Donation Campaigns
 
-Developed By : Syed Farhan Reza
+Developed By: [Syed Farhan Reza](https://github.com/syedfarhanreza)
 
 ## Screenshots
 ### Homepage
-![Uploading Home Page.png…]()
+![Home Page](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/35e09e42-541b-43a5-80c4-96fb71252eb1)
 
-In the project directory, you can run:
+### Blood Request
+![Blood Request](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/4ff0fae4-c854-482b-b847-9174aec95ef6)
 
-### `npm start`
+### Search Donor
+![Search Donor](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/776ab824-7f66-4cdf-a5c6-f0b2d5ea4a53)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Hospitals
+![Hospital](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/42b5d3c2-e5ff-4542-8204-8cd9bff7ac25)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Campaigns
+![Campaign](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/43dd85bb-715d-4b80-bdce-dce2842a4771)
 
-### `npm test`
+### Blogs
+![Blogs](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/307958f0-6a83-4e33-952c-e3806f332eaa)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Registration 
+![Register](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/c39f0070-a27b-4ba0-9018-71214fa91686)
 
-### `npm run build`
+### Login
+![Login](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/7a741382-250c-4760-aa11-d26f0e064aeb)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Admin Dashboard
+![Admin Dashboard](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/940065f2-639e-49d6-8769-ebd20ed63dd1)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Post Blog
+![Blog Writing](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/20f63daa-06ec-494d-b779-ab325eb1a627)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User Dashboard
+![User Dashboard](https://github.com/syedfarhanreza/bloodcare-client/assets/95230278/af9c31d4-e8f0-4218-b8ad-576d3693ed5a)
 
-### `npm run eject`
+## Functions
+### Admin
+- After Login, Can View, Update, Delete Donor.
+- Can View, Update, Delete Recipient.
+- Can Post blog and manage blogs.
+- Can add Hospitals and manage hospitals.
+- Can add Campaigns and manage campaigns.
+- Can View Blood Request made by donor/recipient and can approve or reject that request.
+- Can Make a User an Admin
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Donor
+- Donors can create an account by providing basic details.
+- After Login, the Donor can donate blood, After approval
+- Donor can see their donation history with status (Pending, Approved, Rejected).
+- Donor can accept/decline blood request
+- Donors can update their profile
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Recipient
+- Create an account (Can log in After Signup)
+- Recipient can request blood of a specific blood group.
+- Recipient can see their blood request history with status (Pending, Approved, Rejected).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Technologies
+- React JS
+- Tailwind CSS, DaysiUI
+- Node JS, Express Js
+- MongoDB
+- Firebase
+- JWT
+- React Query
+- 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
